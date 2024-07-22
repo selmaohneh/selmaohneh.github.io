@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "cello's blog"
+title                    : "Cello's blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Marcel Neumann"
@@ -114,8 +114,8 @@ analytics:
 # Site Author
 author:
   name             : "Marcel Neumann"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I write articles about the things I love: Software Craftmanship, Smart Home, and Nerdy Stuff. I won't write about my family although it would also fit in that category. :-)"
+  avatar           : "/assets/images/me.jpg"
+  bio              : "Software Craftmanship, Smart Home, and Nerdy Stuff."
   location         : "Travemünde, Germany"
   email            :
   links:
