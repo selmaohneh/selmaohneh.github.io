@@ -1,4 +1,4 @@
-![](/assets/images/error.jpg)
+![error](/assets/images/error.jpg)
 
 Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.
 
