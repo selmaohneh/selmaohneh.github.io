@@ -1,3 +1,5 @@
+![](/assets/images/error.jpg)
+
 Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.
 
 The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.
