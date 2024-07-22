@@ -1,11 +1,8 @@
----
-header:
-  image: /assets/images/cleaner.jpg
----
-
 Part of being a good developer is reading books and pursuing lifelong learning. One of the books that greatly influenced me as a young professional was [“Clean Code” by Robert C. Martin](https://amzn.to/3XZ8j3J). The best part? It’s an uplifting read. Even with limited software knowledge, you can easily grasp Martin’s concepts. I remember sitting on the train, reading with a smile on my face, and nodding in agreement throughout.
 
 > Martin is spot on! “Clean Code” is the real deal!
+
+![cleaner](/assets/images/cleaner.jpg)
 
 That’s when my “Clean Code” phase began. I treated all of Martin’s principles as established facts; a guidebook that all good developers must adhere to. I became rather dogmatic, sometimes blindly applying Martin’s suggestions.
 

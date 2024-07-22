@@ -1,8 +1,3 @@
----
-header:
-  image: /assets/images/error.jpg
----
-
 Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely. 
 
 The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible. 
@@ -10,6 +5,8 @@ The best we can do to help our fellow developers with that problem is to design 
 An exception-less approach via the Result Pattern is a step in that direction.
 
 In this article, I will guide you through a typical software problem I faced multiple times working in the production industry. I will provide some simple examples, share my thoughts, and explain why I prefer the exception-less approach in this use case.
+
+![error](/assets/images/error.jpg)
 
 I often have to deal with actual hardware at my job.
 
