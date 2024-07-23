@@ -67,3 +67,5 @@ There might be better examples like:
 - …
  
 But I like beer. So I chose this example. Deal with it.
+
+I learned these concepts while reading [The Kubernetes Book by Nigel Poulton](https://amzn.to/3LyFNOS). It's really well written, and I recommend it to anyone who needs a deep dive into Kubernetes.
