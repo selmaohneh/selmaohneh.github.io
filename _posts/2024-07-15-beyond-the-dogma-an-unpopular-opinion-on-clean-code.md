@@ -1,4 +1,5 @@
 ---
+title: "Beyond the Dogma: An unpopular opinion on Clean Code"
 header:
   teaser: /assets/images/cleaner.jpg
 ---

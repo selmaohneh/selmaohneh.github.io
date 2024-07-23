@@ -1,4 +1,5 @@
 ---
+title: "How and Where to handle Exceptions while Maintaining a Great API"
 header:
   teaser: /assets/images/error.jpg
 ---
