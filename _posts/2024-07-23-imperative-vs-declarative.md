@@ -6,7 +6,9 @@ header:
 
 Do you know the difference between an imperative modelling approach and a declarative one? If not, here is a brief explanation with beer.
 
-When hosting a party in our garage, I need to make sure the fridge is filled with beer. Of course, since legend has it that there are people who don't like beer, we also organize soft drinks and water.
+When hosting a party in our garage, I need to make sure the fridge is filled with beer. Of course we also organize soft drinks and water, since legend has it that there are people who don't like beer.
+
+![beer](/assets/images/beer.jpg)
 
 ### The Imperative Model
 
