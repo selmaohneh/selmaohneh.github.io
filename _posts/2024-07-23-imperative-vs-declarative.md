@@ -1,5 +1,5 @@
 ---
-title: "Imperative vs. Declarative Models. Explained with beer"
+title: "Imperative vs. Declarative Models. Explained with Beer"
 header:
   teaser: /assets/images/beer.jpg
 ---
