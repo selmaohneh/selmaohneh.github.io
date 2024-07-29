@@ -11,13 +11,15 @@ There are lots of links in my head when thinking about testing in software:
 * a good test suite saves time in the long run
 * …
 
-A talk from [Daniel Raniz Raneland]([Daniel Raniz Raneland | LinkedIn](https://www.linkedin.com/in/raneland/)) just added another surprising perspective:
+A talk from [Daniel Raniz Raneland](https://www.linkedin.com/in/raneland/) just added another surprising perspective:
 
 > A good test suite prevents you from embarrassment.
 
 ![embarrassment](/assets/images/fingerpointing.jpg)
 
-I think this gives us good guidance for what our test suite needs to cover at least: it's the *one thing* your team/software is responsible for that would be totally embarrassing if not working.
+I think this provides us with valuable insights on the minimun requirements of what to test: 
+
+>It's the *one thing* your team/software is responsible for. The *one thing* that would be totally embarrassing if it didn't function correctly.
 
 * if you develop the software for a snack vending machine, make sure that the doors open correctly.
 * if you develop a to-do web app, make sure that to-dos can be ticked
@@ -26,9 +28,11 @@ I think this gives us good guidance for what our test suite needs to cover at le
 
 If the Excel export of your to-do list generates an incorrect file name, users might tolerate it for a while. But if they can't tick their to-dos, they will definitely unsubscribe from your service.
 
-Ticking to-dos is your *one thing*. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first e2e-tests.
+Ticking to-dos is your *one thing*. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first E2E-tests.
 
-I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by [Johannes Stern]([Johannes Stern | LinkedIn](https://www.linkedin.com/in/yohstern/)). 
+### Return of Investments of tests
+
+I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by [Johannes Stern](https://www.linkedin.com/in/yohstern/). 
 
 > Every single test needs a return of investment (ROI).
 
