@@ -1,4 +1,7 @@
-# How I Explained IoC and DI to Our Senior Software Engineer
+title: "How I explained IoC and DI to our Senior Software Engineer"
+header:
+  teaser: /assets/images/di-ioc.jpg
+---
 
 Inversion of Control and Dependency Injection are two of these big buzz words you always hear when talking about modern software development. At least they were when I started going professional. That’s why I invested quite some time to research that topic. I was surprised our Senior Software Engineer did not…
 
@@ -10,7 +13,7 @@ If even my valued colleague, who was my mentor for the past few years, still did
 
 # Inversion of Control and Dependency Injection for Dummies!
 
-![di-ioc.jpg](<./attachments/56a12e825c8d0c8e-di-ioc.jpg>)
+![di-ioc.jpg](/assets/images/di-ioc.jpg)
 
 Let’s say you want to write a piece of code that tracks how much time you spend in front of your computer. You might come up with a simple API like this:
 
