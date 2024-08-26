@@ -1,3 +1,4 @@
+---
 title: "How I explained IoC and DI to our Senior Software Engineer"
 header:
   teaser: /assets/images/di-ioc.jpg
