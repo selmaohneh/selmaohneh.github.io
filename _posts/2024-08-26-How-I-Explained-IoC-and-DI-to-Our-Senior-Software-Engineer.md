@@ -4,13 +4,13 @@ header:
   teaser: /assets/images/di-ioc.jpg
 ---
 
-Inversion of Control and Dependency Injection are two of these big buzz words you always hear when talking about modern software development. At least they were when I started going professional. That’s why I invested quite some time to research that topic. I was surprised our Senior Software Engineer did not…
+Inversion of Control and Dependency Injection are two of these big buzz words you always hear when talking about modern software development. At least they were when I started going professional. That’s why I invested quite some time to research that topic. I was surprised that our Senior Software Engineer did not…
 
 I had to explain it to him while reviewing some of my code. I still remember his reaction:
 
 > That’s it? That easy? I was completely mystified by that stuff for years and you just explained it to me in a short call?
 
-If even my valued colleague, who was my mentor for the past few years, still didn’t get that concept, I thought it might be worth to write yet another explanation:
+If even my valued colleague, who was my mentor for the past few years, still didn’t get that concept, I thought it might be worth writing yet another explanation:
 
 # Inversion of Control and Dependency Injection for Dummies!
 
@@ -73,9 +73,9 @@ Simple and straight-forward. The only thing this class needs to do its work is a
 
 
 
-> The class needs an instance of `Stopwatch` .  
+> The class needs an instance of `Stopwatch`.  
 >   
-> The class is dependent on a `Stopwatch` .  
+> The class is dependent on a `Stopwatch`.  
 >   
 > The `Stopwatch` is a dependency of the class `ComputerTimeTracker`.
 
@@ -118,7 +118,7 @@ namespace ComputerTimeTracker
 
 The only thing that changed is the constructor.
 
-Instead of *creating *the instance of `Stopwatch` inside the constructor we *inject *it into the constructor.
+Instead of *creating* the instance of `Stopwatch` inside the constructor we *inject* it into the constructor.
 
 
 
@@ -138,7 +138,7 @@ To quote my colleague again:
 
 
 
-> I think we have to discuss this. Now I need to create the `Stopwatch` instance before I can even create an instance of `ComputerTimeTracker`. That sucks. Isn’t that a code smell? Object oriented programming always praises information hiding, but now I have to know about a `Stopwatch` ? When I create the instance inside the constructor I just have to create my `ComputerTimeTracker`and it will handle the rest for me. I don’t want to know the implementation details, I just want to use the class. In summary: The `Stopwatch` should be controlled by the `ComputerTimeTracker`.
+> I think we have to discuss this. Now I need to create the `Stopwatch` instance before I can even create an instance of `ComputerTimeTracker`. That sucks. Isn’t that a code smell? Object oriented programming always praises information hiding, but now I have to know about a `Stopwatch`? When I create the instance inside the constructor I just have to create my `ComputerTimeTracker`and it will handle the rest for me. I don’t want to know the implementation details, I just want to use the class. In summary: The `Stopwatch` should be controlled by the `ComputerTimeTracker`.
 
 
 
@@ -148,19 +148,19 @@ In the approach of my colleague we have clear *order of control:*
 
 
 
-> The class `ComputerTimeTracker`is controlling the `Stopwatch` .  
+> The class `ComputerTimeTracker`is controlling the `Stopwatch`.  
 >   
-> It’s the responsibility of the `ComputerTimeTracker`to control the `Stopwatch` .
+> It’s the responsibility of the `ComputerTimeTracker`to control the `Stopwatch`.
 
 
 
-Now notice what changed when looking at the approach where we injected the `Stopwatch` :
+Now notice what changed when looking at the approach where we injected the `Stopwatch`:
 
 
 
-> We, the users of `ComputerTimeTracker`, are controlling the `Stopwatch` .  
+> We, the users of `ComputerTimeTracker`, are controlling the `Stopwatch`.  
 >   
-> It’s the user’s responsibility to control the `Stopwatch` .
+> It’s the user’s responsibility to control the `Stopwatch`.
 
 
 
@@ -223,7 +223,7 @@ All dependencies we inject into a class via an interface can be *mocked*. That i
 
 - You check the spend time
 
-Writing a unit test for that use case is hard when the `Stopwatch` instance gets created inside the constructor of `ComputerTimeTracker` . You can’t really replace it. And when you can’t replace it you can’t control the `Stopwatch` . So you would have to wait real 42 hours. With dependency injection you can simply inject a mocked `Stopwatch` into the class, just for the test.  
+Writing a unit test for that use case is hard when the `Stopwatch` instance gets created inside the constructor of `ComputerTimeTracker`. You can’t really replace it. And when you can’t replace it you can’t control the `Stopwatch` . So you would have to wait real 42 hours. With dependency injection you can simply inject a mocked `Stopwatch` into the class, just for the test.  
 
 
 ```csharp
@@ -256,9 +256,9 @@ public class ComputerTimeTrackerTests
 
 Dependency injection and inversion of control are important concepts every developer should know. They are a little hyped and often misunderstood. But if you invest some time to really dig into it you see how dumb easy they actually are.
 
-And why are they so hyped at all? For me just because they enable me to write readable unit tests for my code. This already sells it for me.
+Why are they so hyped at all? For me, it's simply because they enable me to write readable unit tests for my code. That alone sells it for me.
 
-But there are more benefits I did not cover here: *Dynamic replacement* of dependencies or usage of an *IoC-Container. *But these are topics for a separate article…
+But there are more benefits I did not cover here: *Dynamic replacement* of dependencies or usage of an *IoC-Container*. But these are topics for a separate article…
 
 Thanks for reading!
 
