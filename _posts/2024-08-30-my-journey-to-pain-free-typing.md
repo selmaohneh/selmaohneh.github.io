@@ -17,7 +17,7 @@ And why is that? Because this actually was a design goal of Christopher Sholes w
 
 ![qwerty](/assets/images/qwerty.jpg)
 
-He had no keyboard, he had a typewriter. When you pressed a key, a metal bar strike the paper to print each character with ink. And if two neighboring metal bars hammered at the same time they could potentially collide and got stuck. 
+He had no keyboard, he had a typewriter. When you pressed a key, a metal bar struck the paper to print each character with ink. And if two neighboring metal bars hammered at the same time they could potentially collide and got stuck. 
 
 That's why Christopher looked at the frequency of common words and letters of the english language and placed the most used letters as far apart as possible. The QWERTY-layout was born.
 
