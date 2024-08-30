@@ -8,6 +8,8 @@ As software developers, we type a lot. And we type very fast… This results in 
 
 When I reached that point a few years ago, I decided to do something against it. I still have many, many full days of typing ahead of me and if I keep going like that, the pain might get worse. I decided to learn more ergonomic typing!
 
+![fingerpain](/assets/images/fingerpain.jpg)
+
 # Problems with the QWERTY layout
 Next time you are in the office, take a minute and observe a colleague while typing an email. You'll notice that his hands and fingers are moving like crazy, stretching, wrenching and twisting over the keyboard. Even an amateur will see that this arrangement of keys seems to be not very effective. It seems like two keys are always on the exact opposite side of the keyboard making the hands and fingers travelling the maximum distance possible. 
 
