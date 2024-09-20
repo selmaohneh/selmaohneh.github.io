@@ -2,6 +2,7 @@
 title: "How I explained IoC and DI to our Senior Software Engineer"
 date: 2024-08-26
 image: "cover.jpg"
+url: /how-i-explained-ioc-and-di-to-our-senior-software-engineer
 categories: 
   - "software craftmanship"
 keywords: 

@@ -1,6 +1,7 @@
 ---
 title: "Imperative vs. Declarative Models. Explained with Beer"
 date: 2024-07-23
+url: /imperative-vs-declarative
 image: "cover.jpg"
 categories: 
   - "software craftmanship"

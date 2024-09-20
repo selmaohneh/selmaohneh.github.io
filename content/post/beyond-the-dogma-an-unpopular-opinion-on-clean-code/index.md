@@ -1,6 +1,7 @@
 ---
 title: "Beyond the Dogma: An unpopular opinion on Clean Code"
 date: 2024-07-15
+url: /beyond-the-dogma-an-unpopular-opinion-on-clean-code
 image: "cover.jpg"
 categories: 
   - "software craftmanship"

@@ -2,6 +2,7 @@
 title: "Home Assistant saves my Daughter from Nightmares"
 date: 2024-09-08
 image: "cover.jpg"
+url: /home-assistant-saves-my-daughter-from-nightmares
 categories: 
   - "smart home"
 keywords: 

@@ -2,6 +2,7 @@
 title: "My Journey to Pain-Free Typing"
 date: 2024-08-30
 image: "cover.jpg"
+url: /my-journey-to-pain-free-typing
 categories: 
   - "nerdy stuff"
 keywords: 

@@ -2,6 +2,7 @@
 title: "How to implement Retries without Cluttering your Code"
 date: 2024-07-24
 image: "cover.jpg"
+url: /how-to-implement-retries-without-cluttering-your-code
 categories: 
   - "software craftmanship"
 keywords: 

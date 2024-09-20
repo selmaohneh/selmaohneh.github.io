@@ -2,6 +2,7 @@
 title: "How and Where to handle Exceptions while Maintaining a Great API"
 date: 2024-07-08
 image: "cover.jpg"
+url: /how-and-where-to-handle-exceptions-while-maintaining-a-great-api
 categories: 
   - "software craftmanship"
 keywords: 

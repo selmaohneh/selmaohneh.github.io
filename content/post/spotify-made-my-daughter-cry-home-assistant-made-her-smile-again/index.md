@@ -2,6 +2,7 @@
 title: "Spotify made my Daughter cry. Home Assistant made her smile again."
 date: 2024-09-11
 image: "cover.jpg"
+url: /spotify-made-my-daughter-cry-home-assistant-made-her-smile-again
 categories: 
   - "nerdy stuff"
   - "smart home"

@@ -1,6 +1,7 @@
 ---
 title: "Embarrassment-Driven-Testing"
 date: 2024-07-29
+url: /embarrassment-driven-testing
 image: "cover.jpg"
 categories: 
   - "software craftmanship"

@@ -1,6 +1,7 @@
 ---
 title: "Fixing Connection Issues by Flashing ESPHome on Shellys OTA"
 date: 2024-09-04
+url: /fixing-connection-issues-by-flashing-esphome-on-shellys-ota
 image: "cover.jpg"
 categories: 
   - "smart home"

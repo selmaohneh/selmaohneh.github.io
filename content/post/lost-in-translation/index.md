@@ -1,6 +1,7 @@
 ---
 title: "Lost in Translation"
 date: 2024-09-05
+url: /lost-in-translation
 image: "cover.jpg"
 categories: 
   - "nerdy stuff"
