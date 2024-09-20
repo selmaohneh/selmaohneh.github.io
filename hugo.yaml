@@ -1,4 +1,4 @@
-baseURL: 'https://example.org/'
+baseURL: 'https://cellos.blog/'
 languageCode: 'en-us'
 theme: 'hugo-theme-stack'
 title: "Cello's Blog"
