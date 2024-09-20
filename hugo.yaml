@@ -6,7 +6,7 @@ enableRobotsTXT: true
 favicon: "/static/favicon.ico"
 googleAnalytics: "G-1JTF1W963D"
 permalinks:  
-  posts: /:title/  
+  post: /:title/  
 params:
   dateformat:
     published: "2006-01-02"
