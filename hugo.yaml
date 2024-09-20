@@ -6,6 +6,8 @@ enableRobotsTXT: true
 favicon: "/static/favicon.ico"
 googleAnalytics: "G-1JTF1W963D"
 params:
+  mainSections:
+    - type: "content"
   dateformat:
     published: "2006-01-02"
     lastUpdated: "2006-01-02"

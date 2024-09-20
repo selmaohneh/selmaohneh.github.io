@@ -8,11 +8,11 @@
         <language>en-us</language>
         <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/exceptions/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>How and Where to handle Exceptions while Maintaining a Great API</title>
-        <link>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</link>
+        <link>http://localhost:1313/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</link>
         <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</guid>
-        <description>&lt;img src="http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/cover.jpg" alt="Featured image of post How and Where to handle Exceptions while Maintaining a Great API" /&gt;&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
+        <guid>http://localhost:1313/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</guid>
+        <description>&lt;img src="http://localhost:1313/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/cover.jpg" alt="Featured image of post How and Where to handle Exceptions while Maintaining a Great API" /&gt;&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
 &lt;p&gt;The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.&lt;/p&gt;
 &lt;p&gt;An exception-less approach via the Result Pattern is a step in that direction.&lt;/p&gt;
 &lt;p&gt;In this article, I will guide you through a typical software problem I faced multiple times working in the production industry. I will provide some simple examples, share my thoughts, and explain why I prefer the exception-less approach in this use case.&lt;/p&gt;

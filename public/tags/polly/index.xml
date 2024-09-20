@@ -8,11 +8,11 @@
         <language>en-us</language>
         <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/polly/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>How to implement Retries without Cluttering your Code</title>
-        <link>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</link>
+        <link>http://localhost:1313/how-to-implement-retries-without-cluttering-your-code/</link>
         <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</guid>
-        <description>&lt;img src="http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/cover.jpg" alt="Featured image of post How to implement Retries without Cluttering your Code" /&gt;&lt;h2 id=&#34;imperfection&#34;&gt;Imperfection
+        <guid>http://localhost:1313/how-to-implement-retries-without-cluttering-your-code/</guid>
+        <description>&lt;img src="http://localhost:1313/how-to-implement-retries-without-cluttering-your-code/cover.jpg" alt="Featured image of post How to implement Retries without Cluttering your Code" /&gt;&lt;h2 id=&#34;imperfection&#34;&gt;Imperfection
 &lt;/h2&gt;&lt;p&gt;One important lesson I learned working as a software engineer in the production industry for many years:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Some things don’t work on the first try.&lt;/p&gt;

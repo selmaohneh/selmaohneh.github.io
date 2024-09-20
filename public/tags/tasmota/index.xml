@@ -8,11 +8,11 @@
         <language>en-us</language>
         <lastBuildDate>Wed, 04 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/tasmota/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Fixing Connection Issues by Flashing ESPHome on Shellys OTA</title>
-        <link>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</link>
+        <link>http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</link>
         <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</guid>
-        <description>&lt;img src="http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/cover.jpg" alt="Featured image of post Fixing Connection Issues by Flashing ESPHome on Shellys OTA" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+        <guid>http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</guid>
+        <description>&lt;img src="http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/cover.jpg" alt="Featured image of post Fixing Connection Issues by Flashing ESPHome on Shellys OTA" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
 &lt;/h2&gt;&lt;p&gt;My house is flooded with smart relays from Shelly.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I use multiple &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LJYm2f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -28,10 +28,10 @@ But then there are one or two relays that give me headaches. Especially the one 
 &lt;p&gt;So I checked the Home Assistant logs regularly to find the root cause. But all I found was the generic error &lt;code&gt;DeviceConnectionError()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Then I stumbled on something interesting in the &lt;a class=&#34;link&#34; href=&#34;https://esphome.io/components/api.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ESPHome docs&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt.jpg&#34;
 	width=&#34;697&#34;
 	height=&#34;481&#34;
-	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu4823773629946252659.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu15501111899955496945.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu4823773629946252659.jpg 480w, http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu15501111899955496945.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;ESPHome vs. MQTT&#34;
@@ -79,10 +79,10 @@ But then there are one or two relays that give me headaches. Especially the one 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stairs_light_button&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;switchid&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hit save, click the 3 dots and select install. Choose &lt;em&gt;Manual download&lt;/em&gt; and download the firmware file in &lt;em&gt;modern format&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota.jpg&#34;
 	width=&#34;551&#34;
 	height=&#34;423&#34;
-	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3920761496051872125.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3480764484358454470.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3920761496051872125.jpg 480w, http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3480764484358454470.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;The wireless option for flashing the firmware&#34;
@@ -99,10 +99,10 @@ But then there are one or two relays that give me headaches. Especially the one 
 &lt;h2 id=&#34;flashing-tasmota-as-intermediate-firmware&#34;&gt;Flashing Tasmota as intermediate firmware
 &lt;/h2&gt;&lt;p&gt;Check which IP is assigned to the Shelly you want to flash. You can see this in your &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3NNV40z&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;router&lt;/a&gt; or by clicking &lt;em&gt;Visit&lt;/em&gt; from inside Home Assistant.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit.jpg&#34;
 	width=&#34;366&#34;
 	height=&#34;332&#34;
-	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu5054928018808083197.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu10893991699551805014.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu5054928018808083197.jpg 480w, http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu10893991699551805014.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Link to the device&amp;rsquo;s IP in Home Assistant&#34;
@@ -129,10 +129,10 @@ But then there are one or two relays that give me headaches. Especially the one 
 &lt;h2 id=&#34;integration-into-home-assistant&#34;&gt;Integration into Home Assistant
 &lt;/h2&gt;&lt;p&gt;After a short time (or a forced restart of Home Assistant), you will receive a notification that a new ESPHome device has been discovered — automatically!&lt;/p&gt;
 &lt;p&gt;That was easy.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass.jpg&#34;
 	width=&#34;1064&#34;
 	height=&#34;839&#34;
-	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu10169789864914084357.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu9288250018621894244.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu10169789864914084357.jpg 480w, http://localhost:1313/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu9288250018621894244.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;The stairs as device in Home Assistant&#34;

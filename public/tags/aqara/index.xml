@@ -8,11 +8,11 @@
         <language>en-us</language>
         <lastBuildDate>Sun, 08 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/aqara/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Home Assistant saves my Daughter from Nightmares</title>
-        <link>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</link>
+        <link>http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/</link>
         <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</guid>
-        <description>&lt;img src="http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/cover.jpg" alt="Featured image of post Home Assistant saves my Daughter from Nightmares" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+        <guid>http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/</guid>
+        <description>&lt;img src="http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/cover.jpg" alt="Featured image of post Home Assistant saves my Daughter from Nightmares" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
 &lt;/h2&gt;&lt;p&gt;When our daughter is (finally) asleep, we like to watch a few more series to wind down. Currently, we are into relatively violent stuff like &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3XyVo7U&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;The Boys&lt;/a&gt;.
 My wife likes to tell the anecdote that she used to crawl out of bed as a child, then secretly sit on the stairs and listen to her parents or the television.
@@ -21,10 +21,10 @@ Once, she even had nightmares because her parents were watching a horror movie a
 &lt;blockquote&gt;
 &lt;p&gt;I don&amp;rsquo;t want my child to see exploding heads or dismembered people, let alone dream about them.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander.gif&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/homelander.gif&#34;
 	width=&#34;480&#34;
 	height=&#34;272&#34;
-	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu5033535500477252397.gif 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu10797557145131479730.gif 1024w&#34;
+	srcset=&#34;http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/homelander_hu5033535500477252397.gif 480w, http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/homelander_hu10797557145131479730.gif 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Homelander in The Boys&#34;
@@ -40,10 +40,10 @@ Once, she even had nightmares because her parents were watching a horror movie a
 &lt;p&gt;I installed a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ZfLBF6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;cheap little door contact&lt;/a&gt; on the door to her nursery. &lt;em&gt;Installed&lt;/em&gt; is an exaggeration, these things are just stuck on.&lt;/p&gt;
 &lt;p&gt;I then integrated it into Home Assistant. When integrating new sensors, it&amp;rsquo;s best to remember to tidy up right away: give them a sensible name and disable any entities you don&amp;rsquo;t need.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/doorsensor.jpg&#34;
 	width=&#34;1309&#34;
 	height=&#34;951&#34;
-	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu16344635730572754358.jpg 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu5735300221203260111.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu16344635730572754358.jpg 480w, http://localhost:1313/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu5735300221203260111.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;The door contact integrated as device in Home Assistant&#34;
