@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Home Assistant on Cello&#39;s Blog</title>
+        <link>http://localhost:1313/tags/home-assistant/</link>
+        <description>Recent content in Home Assistant on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 11 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/home-assistant/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Spotify made my Daughter cry. Home Assistant made her smile again.</title>
+        <link>http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/</link>
+        <pubDate>Wed, 11 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/</guid>
+        <description>&lt;img src="http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover.jpg" alt="Featured image of post Spotify made my Daughter cry. Home Assistant made her smile again." /&gt;&lt;p&gt;Everybody knows the famous &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3WRLnjE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Toniebox&lt;/a&gt;. It&amp;rsquo;s a wonderful device which lets kids start music or an audio book just by putting a little figure on top of it. Every friend of our daughter got one on their second birthday. So the pressure was high.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My daughter looked at me with her big eyes — She wants one, as well!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But that cute little cube is not cheap. Especially the costs for the &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Zh2OLT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Tonie figures&lt;/a&gt; stack up fast… 15€ per figure times ten audio books: That&amp;rsquo;s 150 bucks — for audio books that are already available with my Spotify subscription.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s when I heard about and fell in love with the &lt;a class=&#34;link&#34; href=&#34;https://phoniebox.de/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Phoniebox&lt;/a&gt; project. Building a DIY Toniebox for my daughter sounded like a really cool gift for her birthday.&lt;/p&gt;
+&lt;p&gt;I studied &lt;a class=&#34;link&#34; href=&#34;https://splittscheid.de/phoniebox-bauanleitung-toniebox-alternative/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;this excellent blog post&lt;/a&gt; and managed to build a fancy little box without any prior soldering experience:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;442&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old_hu4326066825652013520.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old_hu16162385188252140584.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Previous DIY music box with NFC cards powered by Phoniebox depending on Spotify&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;And the best part: I was able to add as many audio books as I want without further costs! All content came directly from Spotify.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My daughter was happy. I was proud. Success.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-catastrophe&#34;&gt;The Catastrophe
+&lt;/h2&gt;&lt;p&gt;Then it happened. My wife called me at work:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The box is not working. Did you tinker around again?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I did nothing. But Spotify did. &lt;a class=&#34;link&#34; href=&#34;https://developer.spotify.com/community/news/2022/04/12/libspotify-sunset/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The library libspotify got discontinued&lt;/a&gt;. A library the Phoniebox project heavily relied on. From one day to the next, thousands of Phonieboxes in the Spotify version stopped working.&lt;/p&gt;
+&lt;p&gt;My daughter was sad, even cried a little. I guess she was not the only one. I promised myself that this will not happen again!&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why I built my own music box. A music box powered by Home Assistant. A music box I have full control over.&lt;/p&gt;
+&lt;h2 id=&#34;step-1-the-tag-reader&#34;&gt;Step 1: The tag reader
+&lt;/h2&gt;&lt;p&gt;My box will need to register NFC cards. So I have to include an NFC reader. The Home Assistant tags documentation references a &lt;a class=&#34;link&#34; href=&#34;https://github.com/adonno/tagreader&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cool project on Github&lt;/a&gt; for a standalone tag reader.&lt;/p&gt;
+&lt;p&gt;Exactly what I needed! All material needed are a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GNm78F&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;wemos D1 mini&lt;/a&gt;, a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3IpgVJf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NFC reader&lt;/a&gt; and a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Qmm0DT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;buzzer&lt;/a&gt;. That&amp;rsquo;s it.&lt;/p&gt;
+&lt;p&gt;I ditched the LED since I don&amp;rsquo;t wanted to integrate one in my box. Following the readme I was able to solder everything together and flash the firmware on the wemos D1 mini.&lt;/p&gt;
+&lt;h2 id=&#34;step-2-buttons&#34;&gt;Step 2: Buttons
+&lt;/h2&gt;&lt;p&gt;The Home Assistant docs really have a lot of information about the &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tags feature&lt;/a&gt;. Especially the chapter &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Building an RFID jukebox&lt;/a&gt; is nearly all I wanted.&lt;/p&gt;
+&lt;p&gt;But I want to have actual &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3vMdPaJ&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;physical buttons&lt;/a&gt;. My daughter needs some buttons for play, pause, next, previous, volume up/down. So I bought some.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;1397&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1_hu17398933031732035183.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1_hu11045313946953529762.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The buttons with soldered wires and cable end crimps&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;56&#34;
+		data-flex-basis=&#34;135px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;1397&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2_hu14135304566518374129.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2_hu14402430314972550822.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All components of the DIY music box with soldered wires and cable end crimps&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;56&#34;
+		data-flex-basis=&#34;135px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-3-building-the-box&#34;&gt;Step 3: Building the box
+&lt;/h2&gt;&lt;p&gt;I bought a &lt;a class=&#34;link&#34; href=&#34;https://www.ikea.com/de/de/p/dragan-badezimmer-set-4-tlg-bambus-40222607/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;small bambus box&lt;/a&gt; from IKEA. I drilled some holes in it with &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3VRJu51&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;these guys&lt;/a&gt;. Then I attached everything into the box with some hot glue.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1_hu16256577762572666402.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1_hu2923834882960544734.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Empty DIY music box with power supply&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2_hu3499986175008442437.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2_hu15852490093209164388.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Empty DIY music box with NFC reader&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3_hu9329275291633782733.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3_hu18190832244319235864.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Top of the DIY music box with the three physical buttons&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4_hu2489288939950867891.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4_hu13128565108185011927.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Inner side of the top of the DIY music box with the three physical buttons and the NFC reader&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5_hu4070178774116018852.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5_hu11826152131776755456.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All inner components of the DIY music box attached in the box&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6_hu11667434644275392146.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6_hu1952880583955579962.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The DIY music box with the coaxial power connector&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7.jpg&#34;
+	width=&#34;720&#34;
+	height=&#34;540&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7_hu6668714252114386123.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7_hu3880819309198867068.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The DIY music box with the coaxial power connector, just a little bigger&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8.jpg&#34;
+	width=&#34;853&#34;
+	height=&#34;640&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8_hu2752325225793494362.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8_hu10929812793411187399.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All inner components of the DIY music box attached and glued to the box&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I really learned a lot this time. This was the first time I soldered &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3WXSg2N&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;screw mounts&lt;/a&gt; on the board. The benefit, in contrast to hard-soldering the cables to the board, is that you are able to detach them if needed. This comes in really handy if you need to debug something.&lt;/p&gt;
+&lt;p&gt;I also used &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GlFXX0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cable end crimps&lt;/a&gt; for the first time. No more wire fibers! And they can be easily attached into the screw mounts.&lt;/p&gt;
+&lt;p&gt;This was the first time I am actually proud of my cable management — although I guess any professional would puke looking at this. If so, please give me some tips! I&amp;rsquo;m eager to learn. Thanks!&lt;/p&gt;
+&lt;p&gt;The whole box is powered by a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3VQYsYZ&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;5V power supply&lt;/a&gt;. The ESP gets powered directly over its 5V pin. Don&amp;rsquo;t use the usb port for powering. I ran into all kind of issues like the NFC reader not working.&lt;/p&gt;
+&lt;p&gt;I integrated a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GPs9Fw&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;coaxial power connector&lt;/a&gt; into the box, and it works like a charm. However, make sure you buy a connector that matches the size of your power supply. If they don&amp;rsquo;t match, you will have a loose connection. There are two or three common sizes — just check the datasheets once and you should be fine.&lt;/p&gt;
+&lt;h2 id=&#34;step-4-tweaking-the-firmware-to-support-the-buttons&#34;&gt;Step 4: Tweaking the firmware to support the buttons
+&lt;/h2&gt;&lt;p&gt;To add the different buttons to the firmware and Home Assistant I had to add some binary_sensors to the ESPHome yml file of my music box.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;binary_sensor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_playplause&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_next&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;TX&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_previous&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_volume_down&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_volume_up&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D6&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;wifi&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssid&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_ssid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;password&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_password&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;substitutions&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;packages&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;adonno.tag_reader&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;github://adonno/tagreader/tagreader.yaml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;esphome&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;${name}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name_add_mac_suffix&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now I have all buttons available as entities in Home Assistant, yay!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha.jpg&#34;
+	width=&#34;346&#34;
+	height=&#34;371&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha_hu13874289216816872714.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha_hu10716845268817148159.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The buttons as binary sensors in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;93&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-5-let-the-buttons-execute-automations&#34;&gt;Step 5: Let the buttons execute automations
+&lt;/h2&gt;&lt;p&gt;Play/Pause, next, previous and volume up/down are all standard services of media_player entities. So all I had to do was trigger all those services when a button gets pressed. Here is an example for skipping to the next song:
+&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;463&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next_hu977106341502105354.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next_hu348847419085197105.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The automation for skipping to the next track in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I made similar automations for the other buttons, as well.&lt;/p&gt;
+&lt;p&gt;As you can see I capsuled the media player I want to use for my box as a helper entity. I did this because currently the music will start on our &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ZmPZzH&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Sonos bar&lt;/a&gt; in the living room. That&amp;rsquo;s where the box is located. But in a few years the box will move to my daughter&amp;rsquo;s room. She will get her own little Sonos box (maybe the next good birthday present!?). And then I will be able to switch the media player very fast without needing to adjust all automations.&lt;/p&gt;
+&lt;p&gt;The helper is a group with a single entity.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper.jpg&#34;
+	width=&#34;551&#34;
+	height=&#34;592&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper_hu7410529207277563772.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper_hu5272204786839193433.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The helper entity to make the media player of the DIY box easily swappable&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;93&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-6-creating-the-cards&#34;&gt;Step 6: Creating the cards
+&lt;/h2&gt;&lt;p&gt;The cards are simple &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3vOT3Hu&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NFC cards&lt;/a&gt;, but of course, they have to look good; I can&amp;rsquo;t just write the title on the card with an Edding. My daughter can&amp;rsquo;t read.&lt;/p&gt;
+&lt;p&gt;So my way is to print the audio books cover on a sticker. &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Gq7mXO&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;I use these&lt;/a&gt; because they come with an online software where I can upload the covers and resize them easily.&lt;/p&gt;
+&lt;p&gt;The result looks okay. It would definitely look cooler with a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ikt5IT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;card printer&lt;/a&gt;. But that&amp;rsquo;s just too expensive for me.&lt;/p&gt;
+&lt;h2 id=&#34;step-7-adding-and-triggering-tags&#34;&gt;Step 7: Adding and triggering tags
+&lt;/h2&gt;&lt;p&gt;After the NFC reader was added to Home Assistant (which is really easy if you followed the documentation from Github, since it is discovered automatically), you are able to add new tags. This can be done in the tags menu. When swiping an NFC card over the box, a new tag appears. It has a GUID as name. I immediately rename the tag to the content it should contain.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;389&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags_hu15493818238628072733.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags_hu9438447474148637686.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Tags listed in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The automation that is triggered by the tag scan and actually starts the music is just a tweaked version of the example from the &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/#building-an-rfid-jukebox&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tag documentation&lt;/a&gt;. This is how it looks:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Handle Tag Scan&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;trigger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;event&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;event_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tag_scanned&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ trigger.event.data.tag_id in tags }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;variables&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_player_entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.liasbox_mediaplayer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ tags[trigger.event.data.tag_id].media_content_id }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ tags[trigger.event.data.tag_id].media_content_type }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;service&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.play_media&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;target&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.liasbox_mediaplayer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ media_content_id }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ media_content_type }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;service&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;script.liasbox_setmediaplayersettings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;delay&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;single&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;max_exceeded&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;silent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;variables&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;tags&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-6E-DA-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/1u0bu4ezkj4QHDkfjXwKsW?si=76e77a3055134782&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-1C-E4-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/33Ss311uVWQViCaipw2laT?si=EfWjPNX4SieRiID3GbpnDA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-A3-7A-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/0FHpjWlnUmplF5ciL84Wpa?si=9DLx-nzTS7uVkoH9YsEvvA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-75-8C-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3qAjGnHFbafzKWbntBjKb9?si=AeKRaR1eQ7S2RjLf41_aMA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-4A-90-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/6LQALkZO2BD7UJW5Rbe7AQ?si=-BrXCB_2T0ihqJKTxigefg&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-31-8F-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/5AkNkdpGiTUT1Z1usDdiey?si=8723fd4d8fc5464f&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-83-98-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/5ju4E5z2e8haWhNVI6jvah?si=sbeJ0sWhTBq2fcYT3WKCSg&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-2B-82-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/6cKzIXYEkC2TtuTt07lOZe?si=86b2176eec0649e0&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-84-AA-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3XOuj8bXBsPPJ5hmdtcGCd?si=sjuLO1LjTqut3501iOp_AA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-04-7A-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3MJtb4tIcyxbd7PIm5ASJ9?si=spXJG6INSbSI8szm6SgN_g&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-22-B8-63-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/12TT6OcOHRaM9HfWlfppxN?si=VzwdAKyWT7u9bVpA9L7LeA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-EC-BA-63-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/1BDF8UTWY6wpxLzF6um2xQ?si=xX_ocM5NT5uFapCuuL7JKA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see, it&amp;rsquo;s really not that complicated. You just modify the media_player you want to use and add each content as a new row. You get the ID from the tags menu and the link by using Spotifys “Share” button on the album you&amp;rsquo;d like to use.&lt;/p&gt;
+&lt;h2 id=&#34;the-result&#34;&gt;The result
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;590&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover_hu6936744401527563473.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover_hu17747798771422651364.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;DIY music box with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I really like the new box. My daughter loves it and uses it every day. My wife hates it, because she has to listen to the same audio books every day.&lt;/p&gt;
+&lt;p&gt;I learned so much doing this project. And I know that if something breaks, it&amp;rsquo;s my fault and I will be able to fix it.&lt;/p&gt;
+&lt;p&gt;My daughter is happy again and so am I! Thanks, Home Assistant.&lt;/p&gt;
+&lt;h2 id=&#34;update-2024&#34;&gt;Update 2024
+&lt;/h2&gt;&lt;p&gt;I built a further improved version of the box as a birthday present. But maybe this is content for another post…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1.jpg&#34;
+	width=&#34;2048&#34;
+	height=&#34;1536&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1_hu1138533402041803641.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1_hu16970312858922870357.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Front of DIY music box built with Lego with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2.jpg&#34;
+	width=&#34;2048&#34;
+	height=&#34;1536&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2_hu13927860399100199093.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2_hu17017831908863320949.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Back of DIY music box built with Lego with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Home Assistant saves my Daughter from Nightmares</title>
+        <link>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</link>
+        <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</guid>
+        <description>&lt;img src="http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/cover.jpg" alt="Featured image of post Home Assistant saves my Daughter from Nightmares" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+&lt;/h2&gt;&lt;p&gt;When our daughter is (finally) asleep, we like to watch a few more series to wind down. Currently, we are into relatively violent stuff like &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3XyVo7U&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Boys&lt;/a&gt;.
+My wife likes to tell the anecdote that she used to crawl out of bed as a child, then secretly sit on the stairs and listen to her parents or the television.
+Once, she even had nightmares because her parents were watching a horror movie and she couldn&amp;rsquo;t get the horrifying screams out of her head.&lt;/p&gt;
+&lt;p&gt;But back to the present:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I don&amp;rsquo;t want my child to see exploding heads or dismembered people, let alone dream about them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander.gif&#34;
+	width=&#34;480&#34;
+	height=&#34;272&#34;
+	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu5033535500477252397.gif 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu10797557145131479730.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Homelander in The Boys&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;423px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;home-assistant-to-the-rescue&#34;&gt;Home Assistant to the rescue!
+&lt;/h2&gt;&lt;p&gt;The first challenge was to figure out how to detect my daughter&amp;rsquo;s escape attempts in time. The solution is super simple:&lt;/p&gt;
+&lt;p&gt;I installed a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ZfLBF6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cheap little door contact&lt;/a&gt; on the door to her nursery. &lt;em&gt;Installed&lt;/em&gt; is an exaggeration, these things are just stuck on.&lt;/p&gt;
+&lt;p&gt;I then integrated it into Home Assistant. When integrating new sensors, it&amp;rsquo;s best to remember to tidy up right away: give them a sensible name and disable any entities you don&amp;rsquo;t need.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor.jpg&#34;
+	width=&#34;1309&#34;
+	height=&#34;951&#34;
+	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu16344635730572754358.jpg 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu5735300221203260111.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The door contact integrated as device in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Now I can notice my little runaway as soon as she opens the door!&lt;/p&gt;
+&lt;p&gt;The opening of the door is the trigger of my automation. When this trigger occurs, I pause the playback on my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/47gcJ99&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Fire TV Cube&lt;/a&gt; and let my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Xeq657&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;speakers&lt;/a&gt; make a little warning announcement.&lt;/p&gt;
+&lt;p&gt;Of course, this only happens when the cinema is currently enabled and it&amp;rsquo;s our daughter&amp;rsquo;s sleeping time. Otherwise, we would hear the announcement all day long…&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Notify at Fire TV Cube when Lia opens her door&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;trigger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;binary_sensor.liasroom_door&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;off&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;to&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;binary_sensor.lia_sleeping&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;state&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;input_boolean.livingroom_cinema_enabled&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;state&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;target&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tts.home_assistant_cloud&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;cache&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;message&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Lia is awake!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_player_entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.wohnzimmer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tts.speak&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;single&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;an-authentic-evening-on-the-couch&#34;&gt;An authentic evening on the couch
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;My wife and I are watching a gore-slasher-nightmare-horror movie&lt;/li&gt;
+&lt;li&gt;Our little escapee sneaks out of her bed and opens the door.&lt;/li&gt;
+&lt;li&gt;The movie pauses immediately; there are no scary noises or destructive images.&lt;/li&gt;
+&lt;li&gt;The announcement confirms that our daughter seems to be awake.&lt;/li&gt;
+&lt;li&gt;One of us can quickly go upstairs and put our daughter back into bed before she even has a chance to look at the screen.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;That&amp;rsquo;s why I love Home Assistant! Such a little automation adds so much value. Sweet dreams!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Fixing Connection Issues by Flashing ESPHome on Shellys OTA</title>
+        <link>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</link>
+        <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</guid>
+        <description>&lt;img src="http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/cover.jpg" alt="Featured image of post Fixing Connection Issues by Flashing ESPHome on Shellys OTA" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+&lt;/h2&gt;&lt;p&gt;My house is flooded with smart relays from Shelly.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I use multiple &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LJYm2f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 2.5&lt;/a&gt; to control all the covers in my house&lt;/li&gt;
+&lt;li&gt;I use a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LKJiSg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 1PM&lt;/a&gt; to keep track of the production of my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4cQXyV1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;balcony power plant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I use many &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4e69Rhd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 1&lt;/a&gt; to automate my light switches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have at least 30 smart relays around my house/garden and they work flawlessly!
+But then there are one or two relays that give me headaches. Especially the one controlling the lights at my stairs. These lights are motion-controlled and I expect them to go off 3 minutes after all motion cleared. But over the last couple of weeks, this has not been happening.. This is very annoying since I had to get out of bed and switch them off manually.&lt;/p&gt;
+&lt;p&gt;So I checked the Home Assistant logs regularly to find the root cause. But all I found was the generic error &lt;code&gt;DeviceConnectionError()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Then I stumbled on something interesting in the &lt;a class=&#34;link&#34; href=&#34;https://esphome.io/components/api.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ESPHome docs&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt.jpg&#34;
+	width=&#34;697&#34;
+	height=&#34;481&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu4823773629946252659.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu15501111899955496945.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ESPHome vs. MQTT&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;347px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;That’s why I decided to give ESPHome a try and looked for a way to flash ESPHome onto my Shelly. Maybe this might finally fix the connection errors! Let’s get going!&lt;/p&gt;
+&lt;h2 id=&#34;creating-the-esphome-firmware&#34;&gt;Creating the ESPHome firmware
+&lt;/h2&gt;&lt;p&gt;Go to ESPHome and add a new device. We do &lt;strong&gt;not&lt;/strong&gt; need to connect our Shelly to the computer since we can do everything &lt;em&gt;OTA&lt;/em&gt; (over-the-air).&lt;/p&gt;
+&lt;p&gt;Click on edit and insert and tweak the following configuration to fit your needs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Basic Config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;esphome&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;stairs_light_shelly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;ESP8266&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;board&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;esp01_1m&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;wifi&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssid&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_ssid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;password&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_password&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;logger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;api&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;ota&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Device Specific Config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;output&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;GPIO4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;relayid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;light&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;binary&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stairs_light&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;output&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;relayid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;lightid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;binary_sensor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;GPIO5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stairs_light_button&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;switchid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hit save, click the 3 dots and select install. Choose &lt;em&gt;Manual download&lt;/em&gt; and download the firmware file in &lt;em&gt;modern format&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota.jpg&#34;
+	width=&#34;551&#34;
+	height=&#34;423&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3920761496051872125.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3480764484358454470.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The wireless option for flashing the firmware&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;After the file was created and downloaded, we have to zip it since the file would be too big to upload it onto the Shelly 1. I use &lt;a class=&#34;link&#34; href=&#34;https://www.7-zip.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;7-Zip&lt;/a&gt; for that. Simply right-click the file and compress it to &lt;strong&gt;gzip&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;You should now have a Shelly 1 ESPHome firmware with extension &lt;code&gt;.bin.gz&lt;/code&gt; on your drive.&lt;/p&gt;
+&lt;h2 id=&#34;flashing-tasmota-as-intermediate-firmware&#34;&gt;Flashing Tasmota as intermediate firmware
+&lt;/h2&gt;&lt;p&gt;Check which IP is assigned to the Shelly you want to flash. You can see this in your &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3NNV40z&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;router&lt;/a&gt; or by clicking &lt;em&gt;Visit&lt;/em&gt; from inside Home Assistant.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit.jpg&#34;
+	width=&#34;366&#34;
+	height=&#34;332&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu5054928018808083197.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu10893991699551805014.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Link to the device&amp;rsquo;s IP in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;110&#34;
+		data-flex-basis=&#34;264px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Check the table in &lt;a class=&#34;link&#34; href=&#34;https://github.com/alexdelprete/mgos-to-tasmota&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;this repository&lt;/a&gt;. In case of a Shelly 1 you’d have to enter the following URL into the browser:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://YOURIPADDRESS/ota?url=http://ota.tasmota.com/tasmota/shelly/mg2tasmota-Shelly1.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will flash Tasmota onto your Shelly.&lt;/p&gt;
+&lt;p&gt;After 2 minutes you should see a new WiFi network with a name like &lt;code&gt;tasmota-XXXXX&lt;/code&gt;. Connect to it and head over to &lt;a class=&#34;link&#34; href=&#34;http://192.168.4.1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://192.168.4.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here you can enter your WiFi credentials and hit save. Tasmota will now connect to your WiFi.&lt;/p&gt;
+&lt;h2 id=&#34;flashing-our-esphome-firmware&#34;&gt;Flashing our ESPHome firmware
+&lt;/h2&gt;&lt;p&gt;Go back to the IP address of your Shelly. You should see the default page of Tasmota.&lt;/p&gt;
+&lt;p&gt;Now it’s important to click on Console and enter&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SetOption78 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The console should confirm that you enabled the option 78. This enables us to flash firmware files that are not Tasmota builds.&lt;/p&gt;
+&lt;p&gt;Now head back to the main menu, select &lt;em&gt;Firmware Upgrade&lt;/em&gt; and upload the firmware file we created previously. Start the upgrade! If everything worked out you should get a success message.&lt;/p&gt;
+&lt;h2 id=&#34;integration-into-home-assistant&#34;&gt;Integration into Home Assistant
+&lt;/h2&gt;&lt;p&gt;After a short time (or a forced restart of Home Assistant), you will receive a notification that a new ESPHome device has been discovered — automatically!&lt;/p&gt;
+&lt;p&gt;That was easy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass.jpg&#34;
+	width=&#34;1064&#34;
+	height=&#34;839&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu10169789864914084357.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu9288250018621894244.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The stairs as device in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary
+&lt;/h2&gt;&lt;p&gt;It is possible to flash ESPHome onto many kinds of &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4dQAKG4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly smart relays&lt;/a&gt; simply over-the-air. For me this fixed the connection issues I had with a specific Shelly 1.&lt;/p&gt;
+&lt;p&gt;This tutorial might help you if you are trying to solve the same problem!&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

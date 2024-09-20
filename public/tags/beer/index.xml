@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Beer on Cello&#39;s Blog</title>
+        <link>http://localhost:1313/tags/beer/</link>
+        <description>Recent content in Beer on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Tue, 23 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/beer/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Imperative vs. Declarative Models. Explained with Beer</title>
+        <link>http://localhost:1313/post/imperative-vs-declarative/</link>
+        <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/imperative-vs-declarative/</guid>
+        <description>&lt;img src="http://localhost:1313/post/imperative-vs-declarative/cover.jpg" alt="Featured image of post Imperative vs. Declarative Models. Explained with Beer" /&gt;&lt;p&gt;Do you know the difference between an imperative modelling approach and a declarative one? If not, here is a brief explanation with beer.&lt;/p&gt;
+&lt;p&gt;When hosting a party in our garage, I need to make sure the fridge is filled with beer. Of course we also organize soft drinks and water, since legend has it that there are people who don&amp;rsquo;t like beer.&lt;/p&gt;
+&lt;h2 id=&#34;the-imperative-model&#34;&gt;The Imperative Model
+&lt;/h2&gt;&lt;p&gt;Let&amp;rsquo;s say I have space for around 30 bottles in my fridge. I put 15 bottles of beer, 10 bottles of soft drinks and 5 bottles of water in it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Perfect! Work done, the party can start!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But 10 minutes into the party, the work continues. The fridge is getting empty and I have to replenish the supply. My desired state of 15/10/5 bottles has already dropped to roughly 6/5/4.&lt;/p&gt;
+&lt;p&gt;I need to move more bottles from the beer, soft drink, and water cases to the fridge to keep them cold.&lt;/p&gt;
+&lt;p&gt;Phew… that is quite tedious. The work never stops since it&amp;rsquo;s my job to maintain the desired state of 15/10/5 bottles all night long.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why I instructed everyone to refill the fridge from time to time when they see a shortage, by sticking a note on the fridge.&lt;/p&gt;
+&lt;p&gt;But chaos soon ensues. We now have very strange fridge-bottle-ratios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Either there are too many bottles in the fridge, causing them to roll out and spill all over the floor,&lt;/li&gt;
+&lt;li&gt;Or the fridge is full but doesn&amp;rsquo;t contain a single bottle of beer.&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This pretty much sums up how an imperative model works:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is the job of moving bottles from the case to the fridge&lt;/li&gt;
+&lt;li&gt;This has to be done once before the party&lt;/li&gt;
+&lt;li&gt;The bottle count has to be checked regularly&lt;/li&gt;
+&lt;li&gt;The job of restocking the fridge needs to be done repeatedly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The imperative model focuses on the actions that need to be done in order to set the system up and keep it running.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-declarative-model&#34;&gt;The Declarative Model
+&lt;/h2&gt;&lt;p&gt;I learned from my mistakes! I don&amp;rsquo;t want to go to bed at 9pm because I&amp;rsquo;m exhausted from all the work. So, we hired a bartender.&lt;/p&gt;
+&lt;p&gt;We told the bartender our desired state of 15/10/5 bottles, and he handles the rest for us.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;He sets up the fridge initially,&lt;/li&gt;
+&lt;li&gt;He checks the ratio regularly,&lt;/li&gt;
+&lt;li&gt;He refills the fridge as needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In essence, he performs all the jobs I had to do. I can enjoy the party without worry.&lt;/p&gt;
+&lt;p&gt;So from my perspective, the following happened:&lt;/p&gt;
+&lt;p&gt;Instead of focusing on the actions that need to be done, I simply defined the desired end-state and delegated the responsibility of achieving that state to the bartender. I don&amp;rsquo;t even care &lt;strong&gt;how&lt;/strong&gt; he does his job, as long as he guarantees that the fridge is always filled as I requested.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The declarative model focuses on the desired state while delegating the responsibility of the necessary actions to achieve that state.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;why-beer&#34;&gt;Why beer?
+&lt;/h2&gt;&lt;p&gt;There might be better examples like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting the room temperature on a thermostat vs. switching a heater on and off all the time depending on the current temperature&lt;/li&gt;
+&lt;li&gt;Asking a cook to provide a buffet for 20 people vs. giving the cook atomic instructions on what to buy, how to cut the ingredients, how to season, …&lt;/li&gt;
+&lt;li&gt;Kubernetes: Scaling pods on load changes&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But I like beer. So I chose this example. Deal with it.&lt;/p&gt;
+&lt;p&gt;I learned these concepts while reading &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LyFNOS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Kubernetes Book by Nigel Poulton&lt;/a&gt;. It&amp;rsquo;s really well written, and I recommend it to anyone who needs a deep dive into Kubernetes.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Testing on Cello&#39;s Blog</title>
+        <link>http://localhost:1313/tags/testing/</link>
+        <description>Recent content in Testing on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/testing/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Embarrassment-Driven-Testing</title>
+        <link>http://localhost:1313/post/embarrassment-driven-testing/</link>
+        <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/embarrassment-driven-testing/</guid>
+        <description>&lt;img src="http://localhost:1313/post/embarrassment-driven-testing/cover.jpg" alt="Featured image of post Embarrassment-Driven-Testing" /&gt;&lt;h2 id=&#34;a-new-perspective&#34;&gt;A new perspective
+&lt;/h2&gt;&lt;p&gt;There are lots of links in my head when thinking about testing in software:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a good test suite indicates good software quality&lt;/li&gt;
+&lt;li&gt;a good test suite is a safety net for developers&lt;/li&gt;
+&lt;li&gt;a good test suite saves time in the long run&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A talk from &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/raneland/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Daniel Raniz Raneland&lt;/a&gt; just added another surprising perspective:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good test suite prevents you from embarrassment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-one-thing&#34;&gt;The &lt;code&gt;one thing&lt;/code&gt;
+&lt;/h2&gt;&lt;p&gt;I think this provides us with valuable insights on the minimun requirements of what to test:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s the &lt;code&gt;one thing&lt;/code&gt; your team/software is responsible for. The &lt;code&gt;one thing&lt;/code&gt; that would be totally embarrassing if it didn&amp;rsquo;t function correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;if you develop the software for a snack vending machine, make sure that the doors open correctly.&lt;/li&gt;
+&lt;li&gt;if you develop a to-do web app, make sure that to-dos can be ticked&lt;/li&gt;
+&lt;li&gt;if you develop a mobile camera app, make sure you can actually take a picture&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the Excel export of your to-do list generates an incorrect file name, users might tolerate it for a while. But if they can&amp;rsquo;t tick their to-dos, they will definitely unsubscribe from your service.&lt;/p&gt;
+&lt;p&gt;Ticking to-dos is your &lt;code&gt;one thing&lt;/code&gt;. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first E2E-tests.&lt;/p&gt;
+&lt;h2 id=&#34;return-of-investments-of-tests&#34;&gt;Return of Investments of tests
+&lt;/h2&gt;&lt;p&gt;I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/yohstern/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Johannes Stern&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Every single test needs a return of investment (&lt;code&gt;ROI&lt;/code&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You would not invest your valuable money in a project that does not earn you money in the long run, would you? The same is correct for software tests.&lt;/p&gt;
+&lt;p&gt;We write unit tests because they are cheap and give us a fast response to our changes. This is an instant &lt;code&gt;ROI&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;Integration-, API-, and E2E-tests are more expensive. Depending on the quality of the existing code they can be very expensive. But no matter the price, testing your &lt;code&gt;one thing&lt;/code&gt; is a necessary investment, not just to prevent embarrassment, but to save your business.&lt;/p&gt;
+&lt;p&gt;This same thought can also be true from the opposite perspective: Tests can be a bad investment. If your feature is covered by a great E2E-test, do you really need an API-test &lt;em&gt;and&lt;/em&gt; integration-test &lt;em&gt;and&lt;/em&gt; unit-tests? Or are they just redundant?&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t get me wrong, I am an advocate for testing and support every test that is written. But testing is about quality and not quantity. Having the &lt;code&gt;ROI&lt;/code&gt; in mind, maybe it&amp;rsquo;s time to delete those flaky tests that you spend so much time on debugging every week, while not giving you any confidence when they are finally green.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Polly on Cello&#39;s Blog</title>
+        <link>http://localhost:1313/tags/polly/</link>
+        <description>Recent content in Polly on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/polly/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>How to implement Retries without Cluttering your Code</title>
+        <link>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</guid>
+        <description>&lt;img src="http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/cover.jpg" alt="Featured image of post How to implement Retries without Cluttering your Code" /&gt;&lt;h2 id=&#34;imperfection&#34;&gt;Imperfection
+&lt;/h2&gt;&lt;p&gt;One important lesson I learned working as a software engineer in the production industry for many years:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Some things don’t work on the first try.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The real-world hardware and corresponding drivers I met and worked with always had some quirks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some hardware disconnects from time to time.&lt;/li&gt;
+&lt;li&gt;Some drivers throw an exception when commands are executed too fast after each other.&lt;/li&gt;
+&lt;li&gt;Some sensors don’t answer your commands at all. Maybe after the third try.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The world is not perfect and everyone makes mistakes. Most of the time, hardware and drivers don’t work as you would expect.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;a-naive-solution&#34;&gt;A naive Solution
+&lt;/h2&gt;&lt;p&gt;A common solution to avoid these irregular effects, if you cannot fix the root cause, is introducing a retry logic for your action. This often looks similar to the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; maxAmountOfTries = &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; currentAmountOfTries = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (currentAmountOfTries &amp;gt; maxAmountOfTries)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        currentAmountOfTries++;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DoSomethingThatCanThrowAnException();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; (Exception)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// ignore or log exception&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a great piece of code! It is easy to read, and everyone glimpsing at it knows that this is some retry logic immediately. They could even tweak the number of allowed retries without any deep dive into the code — it’s maintainable, too!&lt;/p&gt;
+&lt;p&gt;But as the code base grows, you will find that construct all over the solution. Even worse: always a little different.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Most of the time, the variable names differ&lt;/li&gt;
+&lt;li&gt;Sometimes the maximum number of tries is set, and sometimes, the maximum number of retries is set.&lt;/li&gt;
+&lt;li&gt;Some classes retry on exceptions, some on specific results, some on both.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These repetitions lead to confusion, which results in bugs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t repeat yourself!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-extraction&#34;&gt;The Extraction
+&lt;/h2&gt;&lt;p&gt;A smart team, of course, notices this flaw and tries to eliminate it. Let’s extract that retry logic so it can be reused! I saw several solutions for that over the years:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A dedicated service for retrying like &lt;code&gt;IRetryService.Retry(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;An extension method on &lt;code&gt;Action&lt;/code&gt; or &lt;code&gt;Func&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These solutions worked most of the time. But they required a significant amount of work! Especially if you want to support retries for both sync and async actions. Still, nearly every bigger project contains some functionality like this.&lt;/p&gt;
+&lt;h2 id=&#34;party-parrot-to-the-rescue&#34;&gt;Party Parrot to the rescue!
+&lt;/h2&gt;&lt;p&gt;There is already an elegant solution to this problem out there! You can use the library &lt;a class=&#34;link&#34; href=&#34;https://github.com/App-vNext/Polly&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Polly&lt;/a&gt; to de-clutter your code. The icon of this library is a colorful parrot. That’s why I can’t resist making bad &lt;a class=&#34;link&#34; href=&#34;https://cultofthepartyparrot.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Party Parrot&lt;/a&gt; jokes about it — Party or Die!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t reinvent the wheel!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here is what the upper code looks like when Polly comes into place:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RetryPolicy policy = Policy
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  .Handle&amp;lt;Exception&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  .Retry(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;policy.Execute(DoSomethingThatCanThrowAnException);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Far less code. In this example, just five lines of code. And it is still clear and precise. That’s a great benefit we have already achieved!&lt;/p&gt;
+&lt;p&gt;It gets better. You remember how I said that hardware behaves strangely from time to time? I once met a sensor that returned &lt;code&gt;double.NaN&lt;/code&gt; sometimes. If it did, you just had to let it rest for some seconds and schedule a retry.&lt;/p&gt;
+&lt;p&gt;Polly can do that, as well. Here is how I would additionally handle the invalid result and introduce a waiting time between every retry:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RetryPolicy&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; policy = Policy&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .Handle&amp;lt;Exception&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .OrResult(Double.NaN)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .WaitAndRetry(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, (_, _) =&amp;gt; TimeSpan.FromSeconds(&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;policy.Execute(DoSomethingThatCanThrowAnException);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;the-advantages&#34;&gt;The Advantages
+&lt;/h2&gt;&lt;p&gt;Let’s focus on the advantages of using Polly for retries:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Great API: Short, precise, and easy to read.&lt;/li&gt;
+&lt;li&gt;Polly is widely used and tested. Don’t reinvent a buggy solution.&lt;/li&gt;
+&lt;li&gt;You can reuse common policies by sharing them between classes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I want to emphasize the API once more. Consider the following method: &lt;code&gt;public double DoSomethingCool(CancellationToken token).&lt;/code&gt; I love that it takes a &lt;code&gt;CancellationToken&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Why? Because any user of this method, every client, knows that it supports cancellation! And even better: Every user of this method can decide how they want to handle cancellation. They can cancel with a timeout, cancel when the user clicks some abort button, or cancel however they want.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A great API forces the user to use it correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can use the same idea for our retry logic with Polly. Look at the following updated method prototype: &lt;code&gt;public double DoSomethingCool(ISyncPolicy policy, CancellationToken token)&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;I love it! This method seems to support cancellation and execution policies — I know that just by looking at the prototype.&lt;/p&gt;
+&lt;p&gt;I can call it in any way I choose! Maybe with five retries on exceptions? Maybe with three retries on &lt;code&gt;double.NaN&lt;/code&gt; with a timeout of two seconds max? It’s up to your clients — your method supports it no matter what they decide. Thanks to Polly and the great API design!&lt;/p&gt;
+&lt;p&gt;Definitely check out the &lt;a class=&#34;link&#34; href=&#34;https://github.com/App-vNext/Polly&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;readme&lt;/a&gt; of Polly because it can do so much more:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rate-limiting&lt;/li&gt;
+&lt;li&gt;timeouts&lt;/li&gt;
+&lt;li&gt;caching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

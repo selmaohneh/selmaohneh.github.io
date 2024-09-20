@@ -1,0 +1,66 @@
+baseURL: 'https://example.org/'
+languageCode: 'en-us'
+theme: 'hugo-theme-stack'
+title: "Cello's Blog"
+enableRobotsTXT: true
+favicon: "/static/favicon.ico"
+googleAnalytics: "G-1JTF1W963D"
+params:
+  dateformat:
+    published: "2006-01-02"
+    lastUpdated: "2006-01-02"
+  sidebar:
+    compact: false
+    subtitle: "Software Craftmanship, Smart Home, and Nerdy Stuff."
+    avatar:
+      enabled: true
+      local: true
+      src: "me.png"
+  widgets:
+        homepage:
+          - type: search
+          - type: categories
+          - type: tag-cloud
+            params:
+              limit: 40
+        page:
+          - type: toc
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: -100
+      params:
+        icon: home
+  social:
+    - identifier: "email"
+      name: "Email"
+      url: "mailto:info@cellos.blog"
+      params:
+        - icon: "mail"
+    - identifier: "linkedin"
+      name: "LinkedIn"
+      url: "https://www.linkedin.com/in/marcel-neumann-8b62b02bb/"
+      params:
+        - icon: "brand-linkedin"
+    - identifier: "github"
+      name: "GitHub"
+      url: "https://github.com/selmaohneh"
+      params:
+        - icon: "brand-github"
+    - identifier: "mastodon"
+      name: "Mastodon"
+      url: "https://mastodon.social/@selmaohneh"
+      params:
+        - icon: "brand-mastodon"
+    - identifier: "bluesky"
+      name: "Bluesky"
+      url: "https://bsky.app/profile/selmaohneh.bsky.social"
+      params:
+        - icon: "brand-bluesky"
+    - identifier: "rss"
+      name: "RSS"
+      url: "https://cellos.blog/index.xml"
+      params:
+        - icon: "rss"

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on My New Hugo Site</title>
+        <link>http://localhost:1313/posts/</link>
+        <description>Recent content in Posts on My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 29 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Embarrassment-Driven-Testing</title>
+        <link>http://localhost:1313/posts/embarrassment-driven-testing/</link>
+        <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/embarrassment-driven-testing/</guid>
+        <description>&lt;img src="http://localhost:1313/posts/embarrassment-driven-testing/cover.jpg" alt="Featured image of post Embarrassment-Driven-Testing" /&gt;&lt;p&gt;There are lots of links in my head when thinking about testing in software:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a good test suite indicates good software quality&lt;/li&gt;
+&lt;li&gt;a good test suite is a safety net for developers&lt;/li&gt;
+&lt;li&gt;a good test suite saves time in the long run&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A talk from &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/raneland/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Daniel Raniz Raneland&lt;/a&gt; just added another surprising perspective:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good test suite prevents you from embarrassment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think this provides us with valuable insights on the minimun requirements of what to test:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s the &lt;em&gt;one thing&lt;/em&gt; your team/software is responsible for. The &lt;em&gt;one thing&lt;/em&gt; that would be totally embarrassing if it didn&amp;rsquo;t function correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;if you develop the software for a snack vending machine, make sure that the doors open correctly.&lt;/li&gt;
+&lt;li&gt;if you develop a to-do web app, make sure that to-dos can be ticked&lt;/li&gt;
+&lt;li&gt;if you develop a mobile camera app, make sure you can actually take a picture&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the Excel export of your to-do list generates an incorrect file name, users might tolerate it for a while. But if they can&amp;rsquo;t tick their to-dos, they will definitely unsubscribe from your service.&lt;/p&gt;
+&lt;p&gt;Ticking to-dos is your &lt;em&gt;one thing&lt;/em&gt;. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first E2E-tests.&lt;/p&gt;
+&lt;h2 id=&#34;return-of-investments-of-tests&#34;&gt;Return of Investments of tests
+&lt;/h2&gt;&lt;p&gt;I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/yohstern/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Johannes Stern&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Every single test needs a return of investment (ROI).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You would not invest your valuable money in a project that does not earn you money in the long run, would you? The same is correct for software tests.&lt;/p&gt;
+&lt;p&gt;We write unit tests because they are cheap and give us a fast response to our changes. This is an instant ROI!&lt;/p&gt;
+&lt;p&gt;Integration-, API-, and E2E-tests are more expensive. Depending on the quality of the existing code they can be very expensive. But no matter the price, testing your &lt;em&gt;one thing&lt;/em&gt; is a necessary investment, not just to prevent embarrassment, but to save your business.&lt;/p&gt;
+&lt;p&gt;This same thought can also be true from the opposite perspective: Tests can be a bad investment. If your feature is covered by a great E2E-test, do you really need an API-test &lt;em&gt;and&lt;/em&gt; integration-test &lt;em&gt;and&lt;/em&gt; unit-tests? Or are they just redundant?&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t get me wrong, I am an advocate for testing and support every test that is written. But testing is about quality and not quantity. Having the ROI in mind, maybe it&amp;rsquo;s time to delete those flaky tests that you spend so much time on debugging every week, while not giving you any confidence when they are finally green.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Beyond the Dogma: An unpopular opinion on Clean Code</title>
+        <link>http://localhost:1313/posts/beyond-the-dogma-an-unpopular-opinion-on-clean-code/</link>
+        <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/beyond-the-dogma-an-unpopular-opinion-on-clean-code/</guid>
+        <description>&lt;img src="http://localhost:1313/posts/beyond-the-dogma-an-unpopular-opinion-on-clean-code/cover.jpg" alt="Featured image of post Beyond the Dogma: An unpopular opinion on Clean Code" /&gt;&lt;p&gt;Part of being a good developer is reading books and pursuing lifelong learning. One of the books that greatly influenced me as a young professional was &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3XZ8j3J&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;“Clean Code” by Robert C. Martin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The best part? It’s an uplifting read. Even with limited software knowledge, you can easily grasp Martin’s concepts. I remember sitting on the train, reading with a smile on my face, and nodding in agreement throughout.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Martin is spot on! “Clean Code” is the real deal!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That’s when my “Clean Code” phase began. I treated all of Martin’s principles as established facts; a guidebook that all good developers must adhere to. I became rather dogmatic, sometimes blindly applying Martin’s suggestions.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DRY&lt;/code&gt; (Don’t Repeat Yourself) — one of the key tenets of Clean Code. I internalized Martin’s ideas and shared them with my colleagues like a prophet. If I noticed something duplicated three times, I’d get nervous and immediately address it through extraction.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Extract ’til you drop!” — Martin’s mantra.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Becoming a Senior Developer required me to question Martin’s principles. Don’t get me wrong, Martin is still correct and “Clean Code” remains essential. However, blindly adopting all his rules is a mistake. Ponder them; some rules even contradict each other. &lt;code&gt;DRY&lt;/code&gt; can lead to complex architectures that breach the &lt;code&gt;KISS&lt;/code&gt; (Keep It Simple, Stupid!) principle. It can also lead to disregarding &lt;code&gt;YAGNI&lt;/code&gt; (You Ain’t Gonna Need It).&lt;/p&gt;
+&lt;p&gt;I’ve come to realize that 6 lines of duplicated code are often cleaner than, for instance, implementing an observer pattern. With those 6 lines, I can instantly understand the code, without having to navigate through multiple classes and interfaces. If those 6 lines turn into 7 lines in 5 years, so be it. It’s an acceptable growth.&lt;/p&gt;
+&lt;p&gt;If you find yourself with 12 lines of duplicated code growing every month, it’s a sign that refactoring should be scheduled.&lt;/p&gt;
+&lt;p&gt;I believe every dedicated developer experiences a dogmatic Clean Code phase, so I won’t advise you to skip it. But keep it brief by critically evaluating Martin’s rules and adopting them only when they truly fit!&lt;/p&gt;
+&lt;p&gt;Another rule I always remember:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The developer who has to debug your code is a serial killer who knows where you live!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Will you offer them 6 lines of code adding items to a list, or will you guide him through the Visitor Pattern to gather those 6 items?&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

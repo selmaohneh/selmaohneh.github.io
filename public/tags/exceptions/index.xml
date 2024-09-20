@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Exceptions on Cello&#39;s Blog</title>
+        <link>http://localhost:1313/tags/exceptions/</link>
+        <description>Recent content in Exceptions on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 08 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/exceptions/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>How and Where to handle Exceptions while Maintaining a Great API</title>
+        <link>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</link>
+        <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</guid>
+        <description>&lt;img src="http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/cover.jpg" alt="Featured image of post How and Where to handle Exceptions while Maintaining a Great API" /&gt;&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
+&lt;p&gt;The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.&lt;/p&gt;
+&lt;p&gt;An exception-less approach via the Result Pattern is a step in that direction.&lt;/p&gt;
+&lt;p&gt;In this article, I will guide you through a typical software problem I faced multiple times working in the production industry. I will provide some simple examples, share my thoughts, and explain why I prefer the exception-less approach in this use case.&lt;/p&gt;
+&lt;h2 id=&#34;the-manufacturers-dll&#34;&gt;The Manufacturer’s DLL
+&lt;/h2&gt;&lt;p&gt;I often have to deal with actual hardware at my job.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Opening/Closing valves&lt;/li&gt;
+&lt;li&gt;Switching relais&lt;/li&gt;
+&lt;li&gt;Retrieving values from temperature sensors&lt;/li&gt;
+&lt;li&gt;Moving actuators&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All these expensive hardwares gets shipped with a piece of software in form of a DLL from the manufacturer.&lt;/p&gt;
+&lt;p&gt;Let’s say we want to measure the ambient pressure and bought some expensive pressure sensor. The manufacturer provided us with a driver that has the following features:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IPressureSensorDriver&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As for most manufacturer DLLs the API is not very convenient. To actually poll the current ambient pressure we have to&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Call &lt;code&gt;Init()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;StartMeasurement()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;StopMeasurement()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;GetPressure()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;dont-repeat-yourself&#34;&gt;Don’t repeat yourself!
+&lt;/h2&gt;&lt;p&gt;Since we don’t want calls repeated all over our solution we will introduce a new class that wraps the manufacturer&amp;rsquo;s driver and acts as a convenient service for us.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pressure;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let’s test our service by polling the pressure multiple times in a row:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Program&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; Task Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; driver = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureSensorDriver();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; pressureService = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureService(driver);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = pressureService.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Pressure: {pressure}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; Task.Delay(&lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.ReadKey();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And of course: As soon as we run the application we’ll get an unhandled exception:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exception Unhandled — System.Exception: ‘Connection to Sensor interrupted.’&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;what-did-we-do-wrong&#34;&gt;What did we do wrong?
+&lt;/h2&gt;&lt;p&gt;We just called a method from another application layer without any exception handling.&lt;/p&gt;
+&lt;p&gt;The driver class is a third-party code we do not know. Nevertheless we crossed that border without any safety net. We just assumed that the method will work as expected.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Always handle exceptions on application borders!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware calls no matter the communication protocol&lt;/li&gt;
+&lt;li&gt;Web Requests or anything that depends on the internet&lt;/li&gt;
+&lt;li&gt;External code, either unknown, undocumented or untested&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-classic-solution&#34;&gt;The Classic Solution
+&lt;/h2&gt;&lt;p&gt;Since we already found the problem, let’s implement the classic solution for it: a try-catch right in our service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pressure;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;.NaN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That, of course, will work. All exceptions will be swallowed by our &lt;code&gt;catch&lt;/code&gt;. If something goes wrong, we simply return a &lt;code&gt;double.NaN&lt;/code&gt; . We are now exception-less!&lt;/p&gt;
+&lt;p&gt;But there are some flaws. Let’s look at the API of our service from a user’s view. And with API I simply mean our method &lt;code&gt;GetPressure()&lt;/code&gt;; its name, its return type and its input arguments. Because that is all the user sees.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The user has no way to know whether the method throws an exception or not. He has no way to decide whether he has to put that method call in a &lt;code&gt;try/catch&lt;/code&gt; without looking into it. That sucks.&lt;/li&gt;
+&lt;li&gt;The user has no way to know whether the method was a success or not. Even when the method ran without an exception, he has to check whether he got a valid number or &lt;code&gt;double.NaN&lt;/code&gt;. That sucks, as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-try-pattern&#34;&gt;The Try Pattern
+&lt;/h2&gt;&lt;p&gt;Let’s tweak our service a little further to see if we can get rid of these flaws:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; TryGetPressure(&lt;span style=&#34;color:#66d9ef&#34;&gt;out&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = Double.NaN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our method now returns the pressure via an out variable. The return value of the method now is a &lt;code&gt;bool&lt;/code&gt; indicating success or failure of the method. We also tweaked the name of our method from &lt;code&gt;GetPressure&lt;/code&gt; to &lt;code&gt;TryGetPressure&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We just implemented the Try Pattern.&lt;/p&gt;
+&lt;h2 id=&#34;what-have-we-won-that-way&#34;&gt;What have we won that way?
+&lt;/h2&gt;&lt;p&gt;Method names starting with &lt;code&gt;Try&lt;/code&gt; are exception-less! That is the most important part of the Try Pattern.&lt;/p&gt;
+&lt;p&gt;Just by reading the method’s name the user of our service already knows that he does not need to handle any exceptions when calling it. This sounds so trivial but is a big part of API design:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you let the user know what to expect, he will do it the correct way.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The other flaw was eliminated, as well: The user can simply check the returned &lt;code&gt;bool&lt;/code&gt; flag to see if the method call was a success or not. He does not need to look at the pressure value at all, when the method already returned &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But in my opinion there are some new flaws:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I don’t like the syntax of out variables. A lot of Clean Code Prophets would sign that immediately. It’s just confusing — everyone expects the outputs of the method left to its name and suddenly there is in output right between the inputs? Just because we can, does not mean we should. Don’t obfuscate your code with all the syntax sugar your language provides. Keep it Simple!&lt;/li&gt;
+&lt;li&gt;We only have a single, binary result. But most of the time we want to provide the user of our method with more information. Consider all the reasons our method could fail: The service could not connect to the sensor? The service was connected to the sensor but the connection was lost? The sensor returned a value but it is not plausible? There might be different ways the user wants to handle each of these situations. In some he might schedule a retry, in others he might simply show a descriptive error message.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-result-pattern&#34;&gt;The Result Pattern
+&lt;/h2&gt;&lt;p&gt;To even solve these flaws, let’s tweak our service even a little further:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; Result&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(pressure &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Fail(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pressure is not plausible.&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Ok(pressure);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Fail(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Could not retrieve Pressure from Sensor.&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this version we don’t return a &lt;code&gt;bool&lt;/code&gt; but a full &lt;code&gt;object&lt;/code&gt; of type &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Before digging deeper into the type &lt;code&gt;Result&lt;/code&gt;, have a look at the new usage of our service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; Task Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; driver = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureSensorDriver();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; pressureService = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureService(driver);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Result&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; pressure = pressureService.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (pressure.IsFailed)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        HandleErrorWhileRetrievingPressure(pressure.Errors);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Pressure: {pressure}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Console.ReadKey();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you review the API and its usage you will notice:&lt;/p&gt;
+&lt;p&gt;You do not retrieve a &lt;code&gt;double&lt;/code&gt; but a &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt;. You are forced to think about what you will do if the operation failed. Just by using &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt; you know that there could be problems. You wouldn’t have noticed that if I just threw an exception inside the method, would you? And that is the big benefit of the Result Pattern.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good API forces the user to use it correctly! It makes it nearly impossible to forget about error handling.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-result-object&#34;&gt;The Result Object
+&lt;/h2&gt;&lt;p&gt;The result object simply contains the actual value you are interested in plus any additional information you need — error reasons, success reasons, helper methods like &lt;code&gt;IsFailed&lt;/code&gt; — be creative!&lt;/p&gt;
+&lt;p&gt;This pattern is not new; it’s a classic. There are many libraries for the Result Pattern available, so you don’t even have to implement your own &lt;code&gt;Result&lt;/code&gt; class!&lt;/p&gt;
+&lt;p&gt;My .NET example used the great project &lt;a class=&#34;link&#34; href=&#34;https://github.com/altmann/FluentResults&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;FluentResults&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;Just to digest, I will repeat my introduction:&lt;/p&gt;
+&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
+&lt;p&gt;The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.&lt;/p&gt;
+&lt;p&gt;An exception-less approach via the Result Pattern is a step in that direction.&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

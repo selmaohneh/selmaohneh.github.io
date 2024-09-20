@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Cello&#39;s Blog</title>
+        <link>http://localhost:1313/</link>
+        <description>Recent content on Cello&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 11 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Spotify made my Daughter cry. Home Assistant made her smile again.</title>
+        <link>http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/</link>
+        <pubDate>Wed, 11 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/</guid>
+        <description>&lt;img src="http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover.jpg" alt="Featured image of post Spotify made my Daughter cry. Home Assistant made her smile again." /&gt;&lt;p&gt;Everybody knows the famous &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3WRLnjE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Toniebox&lt;/a&gt;. It&amp;rsquo;s a wonderful device which lets kids start music or an audio book just by putting a little figure on top of it. Every friend of our daughter got one on their second birthday. So the pressure was high.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My daughter looked at me with her big eyes — She wants one, as well!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But that cute little cube is not cheap. Especially the costs for the &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Zh2OLT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Tonie figures&lt;/a&gt; stack up fast… 15€ per figure times ten audio books: That&amp;rsquo;s 150 bucks — for audio books that are already available with my Spotify subscription.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s when I heard about and fell in love with the &lt;a class=&#34;link&#34; href=&#34;https://phoniebox.de/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Phoniebox&lt;/a&gt; project. Building a DIY Toniebox for my daughter sounded like a really cool gift for her birthday.&lt;/p&gt;
+&lt;p&gt;I studied &lt;a class=&#34;link&#34; href=&#34;https://splittscheid.de/phoniebox-bauanleitung-toniebox-alternative/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;this excellent blog post&lt;/a&gt; and managed to build a fancy little box without any prior soldering experience:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;442&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old_hu4326066825652013520.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box-old_hu16162385188252140584.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Previous DIY music box with NFC cards powered by Phoniebox depending on Spotify&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;And the best part: I was able to add as many audio books as I want without further costs! All content came directly from Spotify.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My daughter was happy. I was proud. Success.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-catastrophe&#34;&gt;The Catastrophe
+&lt;/h2&gt;&lt;p&gt;Then it happened. My wife called me at work:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The box is not working. Did you tinker around again?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I did nothing. But Spotify did. &lt;a class=&#34;link&#34; href=&#34;https://developer.spotify.com/community/news/2022/04/12/libspotify-sunset/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The library libspotify got discontinued&lt;/a&gt;. A library the Phoniebox project heavily relied on. From one day to the next, thousands of Phonieboxes in the Spotify version stopped working.&lt;/p&gt;
+&lt;p&gt;My daughter was sad, even cried a little. I guess she was not the only one. I promised myself that this will not happen again!&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why I built my own music box. A music box powered by Home Assistant. A music box I have full control over.&lt;/p&gt;
+&lt;h2 id=&#34;step-1-the-tag-reader&#34;&gt;Step 1: The tag reader
+&lt;/h2&gt;&lt;p&gt;My box will need to register NFC cards. So I have to include an NFC reader. The Home Assistant tags documentation references a &lt;a class=&#34;link&#34; href=&#34;https://github.com/adonno/tagreader&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cool project on Github&lt;/a&gt; for a standalone tag reader.&lt;/p&gt;
+&lt;p&gt;Exactly what I needed! All material needed are a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GNm78F&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;wemos D1 mini&lt;/a&gt;, a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3IpgVJf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NFC reader&lt;/a&gt; and a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Qmm0DT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;buzzer&lt;/a&gt;. That&amp;rsquo;s it.&lt;/p&gt;
+&lt;p&gt;I ditched the LED since I don&amp;rsquo;t wanted to integrate one in my box. Following the readme I was able to solder everything together and flash the firmware on the wemos D1 mini.&lt;/p&gt;
+&lt;h2 id=&#34;step-2-buttons&#34;&gt;Step 2: Buttons
+&lt;/h2&gt;&lt;p&gt;The Home Assistant docs really have a lot of information about the &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tags feature&lt;/a&gt;. Especially the chapter &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Building an RFID jukebox&lt;/a&gt; is nearly all I wanted.&lt;/p&gt;
+&lt;p&gt;But I want to have actual &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3vMdPaJ&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;physical buttons&lt;/a&gt;. My daughter needs some buttons for play, pause, next, previous, volume up/down. So I bought some.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;1397&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1_hu17398933031732035183.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button1_hu11045313946953529762.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The buttons with soldered wires and cable end crimps&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;56&#34;
+		data-flex-basis=&#34;135px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;1397&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2_hu14135304566518374129.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/button2_hu14402430314972550822.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All components of the DIY music box with soldered wires and cable end crimps&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;56&#34;
+		data-flex-basis=&#34;135px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-3-building-the-box&#34;&gt;Step 3: Building the box
+&lt;/h2&gt;&lt;p&gt;I bought a &lt;a class=&#34;link&#34; href=&#34;https://www.ikea.com/de/de/p/dragan-badezimmer-set-4-tlg-bambus-40222607/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;small bambus box&lt;/a&gt; from IKEA. I drilled some holes in it with &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3VRJu51&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;these guys&lt;/a&gt;. Then I attached everything into the box with some hot glue.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1_hu16256577762572666402.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box1_hu2923834882960544734.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Empty DIY music box with power supply&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2_hu3499986175008442437.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box2_hu15852490093209164388.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Empty DIY music box with NFC reader&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3_hu9329275291633782733.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box3_hu18190832244319235864.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Top of the DIY music box with the three physical buttons&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4_hu2489288939950867891.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box4_hu13128565108185011927.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Inner side of the top of the DIY music box with the three physical buttons and the NFC reader&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5_hu4070178774116018852.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box5_hu11826152131776755456.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All inner components of the DIY music box attached in the box&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6.jpg&#34;
+	width=&#34;640&#34;
+	height=&#34;480&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6_hu11667434644275392146.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box6_hu1952880583955579962.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The DIY music box with the coaxial power connector&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7.jpg&#34;
+	width=&#34;720&#34;
+	height=&#34;540&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7_hu6668714252114386123.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box7_hu3880819309198867068.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The DIY music box with the coaxial power connector, just a little bigger&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8.jpg&#34;
+	width=&#34;853&#34;
+	height=&#34;640&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8_hu2752325225793494362.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/box8_hu10929812793411187399.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;All inner components of the DIY music box attached and glued to the box&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I really learned a lot this time. This was the first time I soldered &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3WXSg2N&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;screw mounts&lt;/a&gt; on the board. The benefit, in contrast to hard-soldering the cables to the board, is that you are able to detach them if needed. This comes in really handy if you need to debug something.&lt;/p&gt;
+&lt;p&gt;I also used &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GlFXX0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cable end crimps&lt;/a&gt; for the first time. No more wire fibers! And they can be easily attached into the screw mounts.&lt;/p&gt;
+&lt;p&gt;This was the first time I am actually proud of my cable management — although I guess any professional would puke looking at this. If so, please give me some tips! I&amp;rsquo;m eager to learn. Thanks!&lt;/p&gt;
+&lt;p&gt;The whole box is powered by a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3VQYsYZ&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;5V power supply&lt;/a&gt;. The ESP gets powered directly over its 5V pin. Don&amp;rsquo;t use the usb port for powering. I ran into all kind of issues like the NFC reader not working.&lt;/p&gt;
+&lt;p&gt;I integrated a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3GPs9Fw&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;coaxial power connector&lt;/a&gt; into the box, and it works like a charm. However, make sure you buy a connector that matches the size of your power supply. If they don&amp;rsquo;t match, you will have a loose connection. There are two or three common sizes — just check the datasheets once and you should be fine.&lt;/p&gt;
+&lt;h2 id=&#34;step-4-tweaking-the-firmware-to-support-the-buttons&#34;&gt;Step 4: Tweaking the firmware to support the buttons
+&lt;/h2&gt;&lt;p&gt;To add the different buttons to the firmware and Home Assistant I had to add some binary_sensors to the ESPHome yml file of my music box.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;binary_sensor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_playplause&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_next&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;TX&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_previous&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_volume_down&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox_volume_up&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;D6&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;inverted&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;input&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;pullup&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;filters&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#f92672&#34;&gt;delayed_off&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;10ms &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;wifi&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssid&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_ssid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;password&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_password&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;substitutions&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;liasbox&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;packages&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;adonno.tag_reader&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;github://adonno/tagreader/tagreader.yaml&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;esphome&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;${name}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name_add_mac_suffix&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now I have all buttons available as entities in Home Assistant, yay!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha.jpg&#34;
+	width=&#34;346&#34;
+	height=&#34;371&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha_hu13874289216816872714.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/buttons-in-ha_hu10716845268817148159.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The buttons as binary sensors in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;93&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-5-let-the-buttons-execute-automations&#34;&gt;Step 5: Let the buttons execute automations
+&lt;/h2&gt;&lt;p&gt;Play/Pause, next, previous and volume up/down are all standard services of media_player entities. So all I had to do was trigger all those services when a button gets pressed. Here is an example for skipping to the next song:
+&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;463&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next_hu977106341502105354.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/automation-next_hu348847419085197105.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The automation for skipping to the next track in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;169&#34;
+		data-flex-basis=&#34;407px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I made similar automations for the other buttons, as well.&lt;/p&gt;
+&lt;p&gt;As you can see I capsuled the media player I want to use for my box as a helper entity. I did this because currently the music will start on our &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ZmPZzH&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Sonos bar&lt;/a&gt; in the living room. That&amp;rsquo;s where the box is located. But in a few years the box will move to my daughter&amp;rsquo;s room. She will get her own little Sonos box (maybe the next good birthday present!?). And then I will be able to switch the media player very fast without needing to adjust all automations.&lt;/p&gt;
+&lt;p&gt;The helper is a group with a single entity.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper.jpg&#34;
+	width=&#34;551&#34;
+	height=&#34;592&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper_hu7410529207277563772.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/boxhelper_hu5272204786839193433.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The helper entity to make the media player of the DIY box easily swappable&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;93&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-6-creating-the-cards&#34;&gt;Step 6: Creating the cards
+&lt;/h2&gt;&lt;p&gt;The cards are simple &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3vOT3Hu&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NFC cards&lt;/a&gt;, but of course, they have to look good; I can&amp;rsquo;t just write the title on the card with an Edding. My daughter can&amp;rsquo;t read.&lt;/p&gt;
+&lt;p&gt;So my way is to print the audio books cover on a sticker. &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Gq7mXO&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;I use these&lt;/a&gt; because they come with an online software where I can upload the covers and resize them easily.&lt;/p&gt;
+&lt;p&gt;The result looks okay. It would definitely look cooler with a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ikt5IT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;card printer&lt;/a&gt;. But that&amp;rsquo;s just too expensive for me.&lt;/p&gt;
+&lt;h2 id=&#34;step-7-adding-and-triggering-tags&#34;&gt;Step 7: Adding and triggering tags
+&lt;/h2&gt;&lt;p&gt;After the NFC reader was added to Home Assistant (which is really easy if you followed the documentation from Github, since it is discovered automatically), you are able to add new tags. This can be done in the tags menu. When swiping an NFC card over the box, a new tag appears. It has a GUID as name. I immediately rename the tag to the content it should contain.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;389&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags_hu15493818238628072733.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/tags_hu9438447474148637686.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Tags listed in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;484px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The automation that is triggered by the tag scan and actually starts the music is just a tweaked version of the example from the &lt;a class=&#34;link&#34; href=&#34;https://www.home-assistant.io/integrations/tag/#building-an-rfid-jukebox&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tag documentation&lt;/a&gt;. This is how it looks:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Handle Tag Scan&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;trigger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;event&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;event_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tag_scanned&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ trigger.event.data.tag_id in tags }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;variables&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_player_entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.liasbox_mediaplayer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ tags[trigger.event.data.tag_id].media_content_id }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ tags[trigger.event.data.tag_id].media_content_type }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;service&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.play_media&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;target&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.liasbox_mediaplayer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ media_content_id }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ media_content_type }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;service&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;script.liasbox_setmediaplayersettings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;delay&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;single&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;max_exceeded&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;silent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;variables&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;tags&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-6E-DA-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/1u0bu4ezkj4QHDkfjXwKsW?si=76e77a3055134782&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-1C-E4-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/33Ss311uVWQViCaipw2laT?si=EfWjPNX4SieRiID3GbpnDA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-A3-7A-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/0FHpjWlnUmplF5ciL84Wpa?si=9DLx-nzTS7uVkoH9YsEvvA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-75-8C-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3qAjGnHFbafzKWbntBjKb9?si=AeKRaR1eQ7S2RjLf41_aMA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-4A-90-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/6LQALkZO2BD7UJW5Rbe7AQ?si=-BrXCB_2T0ihqJKTxigefg&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-31-8F-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/5AkNkdpGiTUT1Z1usDdiey?si=8723fd4d8fc5464f&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-83-98-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/5ju4E5z2e8haWhNVI6jvah?si=sbeJ0sWhTBq2fcYT3WKCSg&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-2B-82-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/playlist/6cKzIXYEkC2TtuTt07lOZe?si=86b2176eec0649e0&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;playlist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-84-AA-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3XOuj8bXBsPPJ5hmdtcGCd?si=sjuLO1LjTqut3501iOp_AA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-04-7A-67-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/3MJtb4tIcyxbd7PIm5ASJ9?si=spXJG6INSbSI8szm6SgN_g&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-22-B8-63-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/12TT6OcOHRaM9HfWlfppxN?si=VzwdAKyWT7u9bVpA9L7LeA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;04-EC-BA-63-10-02-89&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_id&lt;/span&gt;: &amp;gt;-&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;        https://open.spotify.com/album/1BDF8UTWY6wpxLzF6um2xQ?si=xX_ocM5NT5uFapCuuL7JKA&lt;/span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_content_type&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;album&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As you can see, it&amp;rsquo;s really not that complicated. You just modify the media_player you want to use and add each content as a new row. You get the ID from the tags menu and the link by using Spotifys “Share” button on the album you&amp;rsquo;d like to use.&lt;/p&gt;
+&lt;h2 id=&#34;the-result&#34;&gt;The result
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover.jpg&#34;
+	width=&#34;786&#34;
+	height=&#34;590&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover_hu6936744401527563473.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/cover_hu17747798771422651364.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;DIY music box with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;319px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I really like the new box. My daughter loves it and uses it every day. My wife hates it, because she has to listen to the same audio books every day.&lt;/p&gt;
+&lt;p&gt;I learned so much doing this project. And I know that if something breaks, it&amp;rsquo;s my fault and I will be able to fix it.&lt;/p&gt;
+&lt;p&gt;My daughter is happy again and so am I! Thanks, Home Assistant.&lt;/p&gt;
+&lt;h2 id=&#34;update-2024&#34;&gt;Update 2024
+&lt;/h2&gt;&lt;p&gt;I built a further improved version of the box as a birthday present. But maybe this is content for another post…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1.jpg&#34;
+	width=&#34;2048&#34;
+	height=&#34;1536&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1_hu1138533402041803641.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox1_hu16970312858922870357.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Front of DIY music box built with Lego with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt; &lt;img src=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2.jpg&#34;
+	width=&#34;2048&#34;
+	height=&#34;1536&#34;
+	srcset=&#34;http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2_hu13927860399100199093.jpg 480w, http://localhost:1313/post/spotify-made-my-daughter-cry-home-assistant-made-her-smile-again/newbox2_hu17017831908863320949.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Back of DIY music box built with Lego with NFC cards powered by Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;133&#34;
+		data-flex-basis=&#34;320px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Home Assistant saves my Daughter from Nightmares</title>
+        <link>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</link>
+        <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/</guid>
+        <description>&lt;img src="http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/cover.jpg" alt="Featured image of post Home Assistant saves my Daughter from Nightmares" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+&lt;/h2&gt;&lt;p&gt;When our daughter is (finally) asleep, we like to watch a few more series to wind down. Currently, we are into relatively violent stuff like &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3XyVo7U&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Boys&lt;/a&gt;.
+My wife likes to tell the anecdote that she used to crawl out of bed as a child, then secretly sit on the stairs and listen to her parents or the television.
+Once, she even had nightmares because her parents were watching a horror movie and she couldn&amp;rsquo;t get the horrifying screams out of her head.&lt;/p&gt;
+&lt;p&gt;But back to the present:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I don&amp;rsquo;t want my child to see exploding heads or dismembered people, let alone dream about them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander.gif&#34;
+	width=&#34;480&#34;
+	height=&#34;272&#34;
+	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu5033535500477252397.gif 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/homelander_hu10797557145131479730.gif 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Homelander in The Boys&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;423px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;home-assistant-to-the-rescue&#34;&gt;Home Assistant to the rescue!
+&lt;/h2&gt;&lt;p&gt;The first challenge was to figure out how to detect my daughter&amp;rsquo;s escape attempts in time. The solution is super simple:&lt;/p&gt;
+&lt;p&gt;I installed a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3ZfLBF6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;cheap little door contact&lt;/a&gt; on the door to her nursery. &lt;em&gt;Installed&lt;/em&gt; is an exaggeration, these things are just stuck on.&lt;/p&gt;
+&lt;p&gt;I then integrated it into Home Assistant. When integrating new sensors, it&amp;rsquo;s best to remember to tidy up right away: give them a sensible name and disable any entities you don&amp;rsquo;t need.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor.jpg&#34;
+	width=&#34;1309&#34;
+	height=&#34;951&#34;
+	srcset=&#34;http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu16344635730572754358.jpg 480w, http://localhost:1313/post/home-assistant-saves-my-daughter-from-nightmares/doorsensor_hu5735300221203260111.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The door contact integrated as device in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;330px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Now I can notice my little runaway as soon as she opens the door!&lt;/p&gt;
+&lt;p&gt;The opening of the door is the trigger of my automation. When this trigger occurs, I pause the playback on my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/47gcJ99&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Fire TV Cube&lt;/a&gt; and let my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3Xeq657&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;speakers&lt;/a&gt; make a little warning announcement.&lt;/p&gt;
+&lt;p&gt;Of course, this only happens when the cinema is currently enabled and it&amp;rsquo;s our daughter&amp;rsquo;s sleeping time. Otherwise, we would hear the announcement all day long…&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;alias&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Notify at Fire TV Cube when Lia opens her door&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;trigger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      - &lt;span style=&#34;color:#ae81ff&#34;&gt;binary_sensor.liasroom_door&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;off&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;to&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;binary_sensor.lia_sleeping&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;state&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;condition&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;state&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;input_boolean.livingroom_cinema_enabled&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;state&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;target&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tts.home_assistant_cloud&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;data&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;cache&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;message&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Lia is awake!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;media_player_entity_id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;media_player.wohnzimmer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;action&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;tts.speak&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;mode&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;single&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;an-authentic-evening-on-the-couch&#34;&gt;An authentic evening on the couch
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;My wife and I are watching a gore-slasher-nightmare-horror movie&lt;/li&gt;
+&lt;li&gt;Our little escapee sneaks out of her bed and opens the door.&lt;/li&gt;
+&lt;li&gt;The movie pauses immediately; there are no scary noises or destructive images.&lt;/li&gt;
+&lt;li&gt;The announcement confirms that our daughter seems to be awake.&lt;/li&gt;
+&lt;li&gt;One of us can quickly go upstairs and put our daughter back into bed before she even has a chance to look at the screen.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;That&amp;rsquo;s why I love Home Assistant! Such a little automation adds so much value. Sweet dreams!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Lost in Translation</title>
+        <link>http://localhost:1313/post/lost-in-translation/</link>
+        <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/lost-in-translation/</guid>
+        <description>&lt;img src="http://localhost:1313/post/lost-in-translation/cover.jpg" alt="Featured image of post Lost in Translation" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+&lt;/h2&gt;&lt;p&gt;The other day I picked up a phrase that still bounces around in my head from time to time.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t write in your native language, there&amp;rsquo;s always a risk that details will get lost.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been blogging in English so far in order to reach more people. But my mother tongue is German. Do I still manage to express what I want to convey?&lt;/p&gt;
+&lt;p&gt;I think so™. But even though I think I write good English, it takes me a lot more time and energy to write a post in a foreign language.&lt;/p&gt;
+&lt;h2 id=&#34;the-idea&#34;&gt;The Idea
+&lt;/h2&gt;&lt;p&gt;So I had the idea to try the best of both worlds:&lt;/p&gt;
+&lt;p&gt;Why not write in my native language, where I have a deep understanding of subtle differences in meaning, idioms and vocabulary, and then simply have everything translated into the target foreign language?&lt;/p&gt;
+&lt;h2 id=&#34;the-test&#34;&gt;The Test
+&lt;/h2&gt;&lt;p&gt;And in fact, what you are reading here is already the result of that experiment.&lt;/p&gt;
+&lt;p&gt;I had this text translated from German to English by deepL. It took me barely 10 minutes to write this blog post.&lt;/p&gt;
+&lt;h2 id=&#34;the-question&#34;&gt;The Question
+&lt;/h2&gt;&lt;p&gt;But does it still sound like me? Or are the little mistakes I make in my posts due to the foreign language the soul of my blog? Philosophical deep talk today&amp;hellip;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Fixing Connection Issues by Flashing ESPHome on Shellys OTA</title>
+        <link>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</link>
+        <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/</guid>
+        <description>&lt;img src="http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/cover.jpg" alt="Featured image of post Fixing Connection Issues by Flashing ESPHome on Shellys OTA" /&gt;&lt;h2 id=&#34;the-problem&#34;&gt;The Problem
+&lt;/h2&gt;&lt;p&gt;My house is flooded with smart relays from Shelly.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I use multiple &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LJYm2f&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 2.5&lt;/a&gt; to control all the covers in my house&lt;/li&gt;
+&lt;li&gt;I use a &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LKJiSg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 1PM&lt;/a&gt; to keep track of the production of my &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4cQXyV1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;balcony power plant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I use many &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4e69Rhd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly 1&lt;/a&gt; to automate my light switches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have at least 30 smart relays around my house/garden and they work flawlessly!
+But then there are one or two relays that give me headaches. Especially the one controlling the lights at my stairs. These lights are motion-controlled and I expect them to go off 3 minutes after all motion cleared. But over the last couple of weeks, this has not been happening.. This is very annoying since I had to get out of bed and switch them off manually.&lt;/p&gt;
+&lt;p&gt;So I checked the Home Assistant logs regularly to find the root cause. But all I found was the generic error &lt;code&gt;DeviceConnectionError()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Then I stumbled on something interesting in the &lt;a class=&#34;link&#34; href=&#34;https://esphome.io/components/api.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ESPHome docs&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt.jpg&#34;
+	width=&#34;697&#34;
+	height=&#34;481&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu4823773629946252659.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/esphome-vs-mqtt_hu15501111899955496945.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ESPHome vs. MQTT&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;347px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;That’s why I decided to give ESPHome a try and looked for a way to flash ESPHome onto my Shelly. Maybe this might finally fix the connection errors! Let’s get going!&lt;/p&gt;
+&lt;h2 id=&#34;creating-the-esphome-firmware&#34;&gt;Creating the ESPHome firmware
+&lt;/h2&gt;&lt;p&gt;Go to ESPHome and add a new device. We do &lt;strong&gt;not&lt;/strong&gt; need to connect our Shelly to the computer since we can do everything &lt;em&gt;OTA&lt;/em&gt; (over-the-air).&lt;/p&gt;
+&lt;p&gt;Click on edit and insert and tweak the following configuration to fit your needs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Basic Config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;esphome&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;stairs_light_shelly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;ESP8266&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;board&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;esp01_1m&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;wifi&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssid&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_ssid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;password&lt;/span&gt;: !&lt;span style=&#34;color:#ae81ff&#34;&gt;secret wifi_password&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;logger&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;api&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;ota&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Device Specific Config&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;output&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;GPIO4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;relayid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;light&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;binary&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stairs_light&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;output&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;relayid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;lightid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;binary_sensor&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  - &lt;span style=&#34;color:#f92672&#34;&gt;platform&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;gpio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;pin&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;number&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;GPIO5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stairs_light_button&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;switchid&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hit save, click the 3 dots and select install. Choose &lt;em&gt;Manual download&lt;/em&gt; and download the firmware file in &lt;em&gt;modern format&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota.jpg&#34;
+	width=&#34;551&#34;
+	height=&#34;423&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3920761496051872125.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/ota_hu3480764484358454470.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The wireless option for flashing the firmware&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;After the file was created and downloaded, we have to zip it since the file would be too big to upload it onto the Shelly 1. I use &lt;a class=&#34;link&#34; href=&#34;https://www.7-zip.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;7-Zip&lt;/a&gt; for that. Simply right-click the file and compress it to &lt;strong&gt;gzip&lt;/strong&gt;!&lt;/p&gt;
+&lt;p&gt;You should now have a Shelly 1 ESPHome firmware with extension &lt;code&gt;.bin.gz&lt;/code&gt; on your drive.&lt;/p&gt;
+&lt;h2 id=&#34;flashing-tasmota-as-intermediate-firmware&#34;&gt;Flashing Tasmota as intermediate firmware
+&lt;/h2&gt;&lt;p&gt;Check which IP is assigned to the Shelly you want to flash. You can see this in your &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3NNV40z&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;router&lt;/a&gt; or by clicking &lt;em&gt;Visit&lt;/em&gt; from inside Home Assistant.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit.jpg&#34;
+	width=&#34;366&#34;
+	height=&#34;332&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu5054928018808083197.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/visit_hu10893991699551805014.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Link to the device&amp;rsquo;s IP in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;110&#34;
+		data-flex-basis=&#34;264px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Check the table in &lt;a class=&#34;link&#34; href=&#34;https://github.com/alexdelprete/mgos-to-tasmota&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;this repository&lt;/a&gt;. In case of a Shelly 1 you’d have to enter the following URL into the browser:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://YOURIPADDRESS/ota?url=http://ota.tasmota.com/tasmota/shelly/mg2tasmota-Shelly1.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will flash Tasmota onto your Shelly.&lt;/p&gt;
+&lt;p&gt;After 2 minutes you should see a new WiFi network with a name like &lt;code&gt;tasmota-XXXXX&lt;/code&gt;. Connect to it and head over to &lt;a class=&#34;link&#34; href=&#34;http://192.168.4.1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://192.168.4.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here you can enter your WiFi credentials and hit save. Tasmota will now connect to your WiFi.&lt;/p&gt;
+&lt;h2 id=&#34;flashing-our-esphome-firmware&#34;&gt;Flashing our ESPHome firmware
+&lt;/h2&gt;&lt;p&gt;Go back to the IP address of your Shelly. You should see the default page of Tasmota.&lt;/p&gt;
+&lt;p&gt;Now it’s important to click on Console and enter&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SetOption78 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The console should confirm that you enabled the option 78. This enables us to flash firmware files that are not Tasmota builds.&lt;/p&gt;
+&lt;p&gt;Now head back to the main menu, select &lt;em&gt;Firmware Upgrade&lt;/em&gt; and upload the firmware file we created previously. Start the upgrade! If everything worked out you should get a success message.&lt;/p&gt;
+&lt;h2 id=&#34;integration-into-home-assistant&#34;&gt;Integration into Home Assistant
+&lt;/h2&gt;&lt;p&gt;After a short time (or a forced restart of Home Assistant), you will receive a notification that a new ESPHome device has been discovered — automatically!&lt;/p&gt;
+&lt;p&gt;That was easy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass.jpg&#34;
+	width=&#34;1064&#34;
+	height=&#34;839&#34;
+	srcset=&#34;http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu10169789864914084357.jpg 480w, http://localhost:1313/post/fixing-connection-issues-by-flashing-esphome-on-shellys-ota/stairs-in-hass_hu9288250018621894244.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The stairs as device in Home Assistant&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;304px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary
+&lt;/h2&gt;&lt;p&gt;It is possible to flash ESPHome onto many kinds of &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4dQAKG4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Shelly smart relays&lt;/a&gt; simply over-the-air. For me this fixed the connection issues I had with a specific Shelly 1.&lt;/p&gt;
+&lt;p&gt;This tutorial might help you if you are trying to solve the same problem!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>My Journey to Pain-Free Typing</title>
+        <link>http://localhost:1313/post/my-journey-to-pain-free-typing/</link>
+        <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/my-journey-to-pain-free-typing/</guid>
+        <description>&lt;img src="http://localhost:1313/post/my-journey-to-pain-free-typing/cover.jpg" alt="Featured image of post My Journey to Pain-Free Typing" /&gt;&lt;p&gt;As software developers, we type a lot. And we type very fast… This results in quite some keystrokes over the years. Sadly we don&amp;rsquo;t get younger. Due to that load most of us will feel some signs of wear and tear at some point in their career. For some it&amp;rsquo;s the neck, for others it&amp;rsquo;s a pain in the fingers.&lt;/p&gt;
+&lt;p&gt;When I reached that point a few years ago, I decided to do something against it. I still have many, many full days of typing ahead of me and if I keep going like that, the pain might get worse. I decided to learn more ergonomic typing!&lt;/p&gt;
+&lt;h2 id=&#34;problems-with-the-qwerty-layout&#34;&gt;Problems with the &lt;code&gt;QWERTY&lt;/code&gt; layout
+&lt;/h2&gt;&lt;p&gt;Next time you are in the office, take a minute and observe a colleague while typing an email. You&amp;rsquo;ll notice that his hands and fingers are moving like crazy, stretching, wrenching and twisting over the keyboard. Even an amateur will see that this arrangement of keys seems to be not very effective. It seems like two keys are always on the exact opposite side of the keyboard making the hands and fingers travelling the maximum distance possible.&lt;/p&gt;
+&lt;p&gt;And why is that? Because this actually was a design goal of Christopher Sholes when he developed the &lt;code&gt;QWERTY&lt;/code&gt; layout that we use on our keyboards today.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/qwerty.jpg&#34;
+	width=&#34;330&#34;
+	height=&#34;211&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/qwerty_hu9222845443710859639.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/qwerty_hu1415973108238880613.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The QWERTY layout&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;375px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;He had no keyboard, he had a typewriter. When you pressed a key, a metal bar struck the paper to print each character with ink. And if two neighboring metal bars hammered at the same time they could potentially collide and got stuck.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why Christopher looked at the frequency of common words and letters of the english language and placed the most used letters as far apart as possible. The &lt;code&gt;QWERTY&lt;/code&gt; layout was born.&lt;/p&gt;
+&lt;h2 id=&#34;discovering-noted&#34;&gt;Discovering &lt;code&gt;Noted&lt;/code&gt;
+&lt;/h2&gt;&lt;p&gt;Keyboards got rid of metal bars. So lots of smart people used this chance to create alternative layouts not optimize for an outdated goal like &lt;em&gt;less collisions of metal bars&lt;/em&gt; but for a really helpful goal like &lt;em&gt;ergonomy&lt;/em&gt;! All of them are magnitudes better than &lt;code&gt;QWERTY&lt;/code&gt; and I don&amp;rsquo;t want to judge which arguably is the best, but the one I went with is &lt;a class=&#34;link&#34; href=&#34;https://dariogoetz.github.io/noted-layout/noted_deutsch.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;code&gt;Noted&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/noted.jpg&#34;
+	width=&#34;535&#34;
+	height=&#34;183&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/noted_hu16181057290246232306.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/noted_hu6204622930109478061.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The Noted layout&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;292&#34;
+		data-flex-basis=&#34;701px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I was extremely hyped, thinking I might have found a solution to save my fingers. But that feeling changed soon&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;my-learning-journey&#34;&gt;My learning journey
+&lt;/h2&gt;&lt;p&gt;I found this &lt;a class=&#34;link&#34; href=&#34;https://monkeytype.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;beautiful website&lt;/a&gt; that gives you exercises to type and tracks your progress over time. I changed my layout to &lt;code&gt;Noted&lt;/code&gt; and started&amp;hellip; After one to two days I knew where all the keys were.&lt;/p&gt;
+&lt;p&gt;I decided to go cold turkey. From one day to the next, I changed my layout to &lt;code&gt;Noted&lt;/code&gt; on all my machines. I printed the layout as a cheat sheet and put it next to my keyboard to get started.&lt;/p&gt;
+&lt;p&gt;Now began the hard part. This next two weeks were crushing. I typed around 6 words per minute. It felt like I had a stroke.&lt;/p&gt;
+&lt;p&gt;Chatting with colleagues became a chore, writing software was nearly impossible, and everything felt clumsy and slow, which was quite frustrating.&lt;/p&gt;
+&lt;p&gt;I think this is the first stage where people might give up. And I can totally relate. But with some motivation from a friend of mine who went that road years ago, I kept going.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/monkeytype.jpg&#34;
+	width=&#34;1579&#34;
+	height=&#34;413&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/monkeytype_hu7921647774965557729.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/monkeytype_hu11054152553704559858.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Speed graph on monkeytype.com&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;382&#34;
+		data-flex-basis=&#34;917px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;After 4-5 weeks consistently writing &lt;code&gt;Noted&lt;/code&gt; only and exercising with monkey type multiple times a day, I slowly came back to a okayish typing speed. And by that I don&amp;rsquo;t mean fast, I mean I could get some work done. Slowly.&lt;/p&gt;
+&lt;p&gt;It took me around 3 months until it made click. After that time I reached around 30 words per minute, which is not totally embarrassing anymore.&lt;/p&gt;
+&lt;p&gt;Today, nearly a year later, I can type at a speed of around 50-60 words per minute. But I am drifting up only talking about speeds while my initial goal was ergonomy. So how does it feel?&lt;/p&gt;
+&lt;h2 id=&#34;benefits-ive-experienced&#34;&gt;Benefits I&amp;rsquo;ve experienced
+&lt;/h2&gt;&lt;p&gt;This is the first time in my life I can actually type blindly. I always was fast and peaked seldomly, but this is another level. I now never look at the keyboard. I even use a keyboard that only has &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/4cLLDHO&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;blank key caps&lt;/a&gt;. This feels good. And nerdy.&lt;/p&gt;
+&lt;p&gt;Additionally, your fingers seem to naturally rest at the home row. Colleagues say it looks really relaxing when I type. And this is true. Your hand is still while your fingers only make minor movements. You actually can see that when looking at the finger heatmap.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/heatmap.jpg&#34;
+	width=&#34;1354&#34;
+	height=&#34;641&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/heatmap_hu7252378791665952854.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/heatmap_hu6471485049980714627.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Key heatmap with the Noted layout&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;506px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;In addition to that your fingers seem to roll the words. That might read strange but often you do 2 strokes on the home row with the left hand and then 2 key strokes on the home row with the right hand. This feels natural and almost like playing the piano.&lt;/p&gt;
+&lt;p&gt;And most important: My pain is gone.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Noted&lt;/code&gt; also has layers. Just like &lt;code&gt;QWERTY&lt;/code&gt; changes from minor to capital letters when holding the shift key, &lt;code&gt;Noted&lt;/code&gt; changes to another layer.&lt;/p&gt;
+&lt;p&gt;The first layer contains all the special characters. This is super cool especially for programmers since important keys like the brackets are all on the home row. So even this can be typed without hand movements.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/layer1.jpg&#34;
+	width=&#34;690&#34;
+	height=&#34;183&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/layer1_hu11771725265591421565.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/layer1_hu9006279846013070015.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Layer 1 of the Noted layout&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;904px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;My favorite is the second layer because you immediately have the arrow keys under your left hand and a number block under the right hand. This helps for navigating code and drastically reduced my mouse usage.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/layer2.jpg&#34;
+	width=&#34;690&#34;
+	height=&#34;183&#34;
+	srcset=&#34;http://localhost:1313/post/my-journey-to-pain-free-typing/layer2_hu9996527383599581395.jpg 480w, http://localhost:1313/post/my-journey-to-pain-free-typing/layer2_hu5726381773787303749.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Layer 2 of the Noted layout&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;377&#34;
+		data-flex-basis=&#34;904px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;I could go more into detail but I need to wrap it up here:&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;I spent 3 months learning something that will benefit me for the rest of my life. That&amp;rsquo;s a no-brainer. If you experience a strain in the fingers or the neck, give it a try for its ergonomic effects! If you work as a developer, give it a try - you will learn to love its layers while coding. If you, like me, do both, what the hell are you still waiting for?&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>How I explained IoC and DI to our Senior Software Engineer</title>
+        <link>http://localhost:1313/post/how-i-explained-ioc-and-di-to-our-senior-software-engineer/</link>
+        <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/how-i-explained-ioc-and-di-to-our-senior-software-engineer/</guid>
+        <description>&lt;img src="http://localhost:1313/post/how-i-explained-ioc-and-di-to-our-senior-software-engineer/cover.jpg" alt="Featured image of post How I explained IoC and DI to our Senior Software Engineer" /&gt;&lt;p&gt;Inversion of Control and Dependency Injection are two of these big buzz words you always hear when talking about modern software development. At least they were when I started going professional. That’s why I invested quite some time to research that topic. I was surprised that our Senior Software Engineer did not…&lt;/p&gt;
+&lt;p&gt;I had to explain it to him while reviewing some of my code. I still remember his reaction:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;That’s it? That easy? I was completely mystified by that stuff for years and you just explained it to me in a short call?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If even my valued colleague, who was my mentor for the past few years, still didn’t get that concept, I thought it might be worth writing yet another explanation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Inversion of Control and Dependency Injection for Dummies!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;dependency-injection&#34;&gt;Dependency Injection
+&lt;/h2&gt;&lt;p&gt;Let’s say you want to write a piece of code that tracks how much time you spend in front of your computer. You might come up with a simple API like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IComputerTimeTracker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartTracking();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopTracking();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TimeSpan GetTimeSpendInFrontOfComputer();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If my colleague implemented that interface a few years back it would have looked somehow like that:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Diagnostics;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ComputerTimeTracker&lt;/span&gt; : IComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; Stopwatch _stopWatch;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ComputerTimeTracker()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Stopwatch();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Start();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Stop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; TimeSpan GetTimeSpendInFrontOfComputer()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; _stopWatch.Elapsed;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Simple and straight-forward. The only thing this class needs to do its work is a &lt;code&gt;Stopwatch&lt;/code&gt; instance.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The class needs an instance of &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The class is dependent on a &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Stopwatch&lt;/code&gt; is a dependency of the class &lt;code&gt;ComputerTimeTracker&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So far, so good. Now let’s just do a little modification to that code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System.Diagnostics;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ComputerTimeTracker&lt;/span&gt; : IComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; Stopwatch _stopWatch;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ComputerTimeTracker(Stopwatch stopWatch)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch = stopWatch;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Start();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Stop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; TimeSpan GetTimeSpendInFrontOfComputer()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; _stopWatch.Elapsed;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The only thing that changed is the constructor.&lt;/p&gt;
+&lt;p&gt;Instead of &lt;em&gt;creating&lt;/em&gt; the instance of &lt;code&gt;Stopwatch&lt;/code&gt; inside the constructor we &lt;em&gt;inject&lt;/em&gt; it into the constructor.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We inject the &lt;code&gt;Stopwatch&lt;/code&gt; into the constructor.&lt;/p&gt;
+&lt;p&gt;We inject the dependency &lt;code&gt;Stopwatch&lt;/code&gt; into the constructor.&lt;/p&gt;
+&lt;p&gt;We just did a dependency injection.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And I just want to make it clear: That is really all! Dependency injection means nothing more and nothing less than providing a dependency to someone who needs it instead of letting the someone create the dependency itself.&lt;/p&gt;
+&lt;p&gt;It does not matter whether you inject the dependency via the class constructor, via a property, or via a setter-method. All you do is injecting a dependency.&lt;/p&gt;
+&lt;h2 id=&#34;inversion-of-control&#34;&gt;Inversion of Control
+&lt;/h2&gt;&lt;p&gt;To quote my colleague again:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I think we have to discuss this. Now I need to create the &lt;code&gt;Stopwatch&lt;/code&gt; instance before I can even create an instance of &lt;code&gt;ComputerTimeTracker&lt;/code&gt;. That sucks. Isn’t that a code smell? Object oriented programming always praises information hiding, but now I have to know about a &lt;code&gt;Stopwatch&lt;/code&gt;? When I create the instance inside the constructor I just have to create my &lt;code&gt;ComputerTimeTracker&lt;/code&gt;and it will handle the rest for me. I don’t want to know the implementation details, I just want to use the class. In summary: The &lt;code&gt;Stopwatch&lt;/code&gt; should be controlled by the &lt;code&gt;ComputerTimeTracker&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Notice how he already used the word &lt;em&gt;controlled&lt;/em&gt;. I’m just gonna think that thought a little bit further:&lt;/p&gt;
+&lt;p&gt;In the approach of my colleague we have clear &lt;em&gt;order of control:&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The class &lt;code&gt;ComputerTimeTracker&lt;/code&gt;is controlling the &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It’s the responsibility of the &lt;code&gt;ComputerTimeTracker&lt;/code&gt;to control the &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now notice what changed when looking at the approach where we injected the &lt;code&gt;Stopwatch&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We, the users of &lt;code&gt;ComputerTimeTracker&lt;/code&gt;, are controlling the &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It’s the user’s responsibility to control the &lt;code&gt;Stopwatch&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You might have already noticed it. By injecting the dependency we inverted the order of control. We moved the responsibility to control the &lt;code&gt;Stopwatch&lt;/code&gt; from the class away to the user of the class. That is inversion of control. And again: That is really all!&lt;/p&gt;
+&lt;h2 id=&#34;loose-coupling&#34;&gt;Loose Coupling
+&lt;/h2&gt;&lt;p&gt;Now that the buzz words are de-mystified we can talk about why we might prefer the approach with dependency injection. Let&amp;rsquo;s enhance our sample code a little further:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; System;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; ComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IStopwatch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Start();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Stop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        TimeSpan Elapsed { &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ComputerTimeTracker&lt;/span&gt; : IComputerTimeTracker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IStopwatch _stopWatch;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ComputerTimeTracker(IStopwatch stopWatch)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch = stopWatch;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Start();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopTracking()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _stopWatch.Stop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; TimeSpan GetTimeSpendInFrontOfComputer()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; _stopWatch.Elapsed;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All I changed is swapping the class dependency &lt;code&gt;Stopwatch&lt;/code&gt; for an interface dependency &lt;code&gt;IStopwatch&lt;/code&gt;. That way the class &lt;code&gt;ComputerTimeTracker&lt;/code&gt;is not depending on the class &lt;code&gt;Stopwatch&lt;/code&gt; of the .NET framework but loosely coupled to any instance that implements the interface &lt;code&gt;IStopwatch&lt;/code&gt;. Now to our biggest benefit:&lt;/p&gt;
+&lt;h2 id=&#34;unit-tests&#34;&gt;Unit tests
+&lt;/h2&gt;&lt;p&gt;All dependencies we inject into a class via an interface can be &lt;em&gt;mocked&lt;/em&gt;. That is super convenient. Consider the following use case:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;You start the tracking&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You spend 42 hours before the computer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You stop the tracking&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You check the spend time&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Writing a unit test for that use case is hard when the &lt;code&gt;Stopwatch&lt;/code&gt; instance gets created inside the constructor of &lt;code&gt;ComputerTimeTracker&lt;/code&gt;. You can’t really replace it. And when you can’t replace it you can’t control the &lt;code&gt;Stopwatch&lt;/code&gt; . So you would have to wait real 42 hours. With dependency injection you can simply inject a mocked &lt;code&gt;Stopwatch&lt;/code&gt; into the class, just for the test.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;[TestClass]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ComputerTimeTrackerTests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;    [TestMethod]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Spend42HoursBeforeTheComputer()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; stopwatch = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Mock&amp;lt;IStopwatch&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        stopwatch.Setup(x =&amp;gt; x.Elapsed).Returns(TimeSpan.FromHours(&lt;span style=&#34;color:#ae81ff&#34;&gt;42&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; systemUnderTest = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; ComputerTimeTracker(stopwatch.Object);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        systemUnderTest.StartTracking();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        stopwatch.Verify(x =&amp;gt; x.Start(), Times.Once);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        systemUnderTest.StopTracking();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        stopwatch.Verify(x =&amp;gt; x.Stop(), Times.Once);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Assert.AreEqual(TimeSpan.FromHours(&lt;span style=&#34;color:#ae81ff&#34;&gt;42&lt;/span&gt;), systemUnderTest.GetTimeSpendInFrontOfComputer());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;Dependency injection and inversion of control are important concepts every developer should know. They are a little hyped and often misunderstood. But if you invest some time to really dig into it you see how dumb easy they actually are.&lt;/p&gt;
+&lt;p&gt;Why are they so hyped at all? For me, it&amp;rsquo;s simply because they enable me to write readable unit tests for my code. That alone sells it for me.&lt;/p&gt;
+&lt;p&gt;But there are more benefits I did not cover here: &lt;em&gt;Dynamic replacement&lt;/em&gt; of dependencies or usage of an &lt;em&gt;IoC-Container&lt;/em&gt;. But these are topics for a separate article…&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Embarrassment-Driven-Testing</title>
+        <link>http://localhost:1313/post/embarrassment-driven-testing/</link>
+        <pubDate>Mon, 29 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/embarrassment-driven-testing/</guid>
+        <description>&lt;img src="http://localhost:1313/post/embarrassment-driven-testing/cover.jpg" alt="Featured image of post Embarrassment-Driven-Testing" /&gt;&lt;h2 id=&#34;a-new-perspective&#34;&gt;A new perspective
+&lt;/h2&gt;&lt;p&gt;There are lots of links in my head when thinking about testing in software:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a good test suite indicates good software quality&lt;/li&gt;
+&lt;li&gt;a good test suite is a safety net for developers&lt;/li&gt;
+&lt;li&gt;a good test suite saves time in the long run&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A talk from &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/raneland/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Daniel Raniz Raneland&lt;/a&gt; just added another surprising perspective:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good test suite prevents you from embarrassment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-one-thing&#34;&gt;The &lt;code&gt;one thing&lt;/code&gt;
+&lt;/h2&gt;&lt;p&gt;I think this provides us with valuable insights on the minimun requirements of what to test:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s the &lt;code&gt;one thing&lt;/code&gt; your team/software is responsible for. The &lt;code&gt;one thing&lt;/code&gt; that would be totally embarrassing if it didn&amp;rsquo;t function correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;if you develop the software for a snack vending machine, make sure that the doors open correctly.&lt;/li&gt;
+&lt;li&gt;if you develop a to-do web app, make sure that to-dos can be ticked&lt;/li&gt;
+&lt;li&gt;if you develop a mobile camera app, make sure you can actually take a picture&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the Excel export of your to-do list generates an incorrect file name, users might tolerate it for a while. But if they can&amp;rsquo;t tick their to-dos, they will definitely unsubscribe from your service.&lt;/p&gt;
+&lt;p&gt;Ticking to-dos is your &lt;code&gt;one thing&lt;/code&gt;. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first E2E-tests.&lt;/p&gt;
+&lt;h2 id=&#34;return-of-investments-of-tests&#34;&gt;Return of Investments of tests
+&lt;/h2&gt;&lt;p&gt;I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by &lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/yohstern/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Johannes Stern&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Every single test needs a return of investment (&lt;code&gt;ROI&lt;/code&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You would not invest your valuable money in a project that does not earn you money in the long run, would you? The same is correct for software tests.&lt;/p&gt;
+&lt;p&gt;We write unit tests because they are cheap and give us a fast response to our changes. This is an instant &lt;code&gt;ROI&lt;/code&gt;!&lt;/p&gt;
+&lt;p&gt;Integration-, API-, and E2E-tests are more expensive. Depending on the quality of the existing code they can be very expensive. But no matter the price, testing your &lt;code&gt;one thing&lt;/code&gt; is a necessary investment, not just to prevent embarrassment, but to save your business.&lt;/p&gt;
+&lt;p&gt;This same thought can also be true from the opposite perspective: Tests can be a bad investment. If your feature is covered by a great E2E-test, do you really need an API-test &lt;em&gt;and&lt;/em&gt; integration-test &lt;em&gt;and&lt;/em&gt; unit-tests? Or are they just redundant?&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t get me wrong, I am an advocate for testing and support every test that is written. But testing is about quality and not quantity. Having the &lt;code&gt;ROI&lt;/code&gt; in mind, maybe it&amp;rsquo;s time to delete those flaky tests that you spend so much time on debugging every week, while not giving you any confidence when they are finally green.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>How to implement Retries without Cluttering your Code</title>
+        <link>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</link>
+        <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/</guid>
+        <description>&lt;img src="http://localhost:1313/post/how-to-implement-retries-without-cluttering-your-code/cover.jpg" alt="Featured image of post How to implement Retries without Cluttering your Code" /&gt;&lt;h2 id=&#34;imperfection&#34;&gt;Imperfection
+&lt;/h2&gt;&lt;p&gt;One important lesson I learned working as a software engineer in the production industry for many years:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Some things don’t work on the first try.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The real-world hardware and corresponding drivers I met and worked with always had some quirks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some hardware disconnects from time to time.&lt;/li&gt;
+&lt;li&gt;Some drivers throw an exception when commands are executed too fast after each other.&lt;/li&gt;
+&lt;li&gt;Some sensors don’t answer your commands at all. Maybe after the third try.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The world is not perfect and everyone makes mistakes. Most of the time, hardware and drivers don’t work as you would expect.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;a-naive-solution&#34;&gt;A naive Solution
+&lt;/h2&gt;&lt;p&gt;A common solution to avoid these irregular effects, if you cannot fix the root cause, is introducing a retry logic for your action. This often looks similar to the following:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; maxAmountOfTries = &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; currentAmountOfTries = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (currentAmountOfTries &amp;gt; maxAmountOfTries)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        currentAmountOfTries++;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DoSomethingThatCanThrowAnException();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; (Exception)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// ignore or log exception&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a great piece of code! It is easy to read, and everyone glimpsing at it knows that this is some retry logic immediately. They could even tweak the number of allowed retries without any deep dive into the code — it’s maintainable, too!&lt;/p&gt;
+&lt;p&gt;But as the code base grows, you will find that construct all over the solution. Even worse: always a little different.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Most of the time, the variable names differ&lt;/li&gt;
+&lt;li&gt;Sometimes the maximum number of tries is set, and sometimes, the maximum number of retries is set.&lt;/li&gt;
+&lt;li&gt;Some classes retry on exceptions, some on specific results, some on both.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These repetitions lead to confusion, which results in bugs.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t repeat yourself!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-extraction&#34;&gt;The Extraction
+&lt;/h2&gt;&lt;p&gt;A smart team, of course, notices this flaw and tries to eliminate it. Let’s extract that retry logic so it can be reused! I saw several solutions for that over the years:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A dedicated service for retrying like &lt;code&gt;IRetryService.Retry(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;An extension method on &lt;code&gt;Action&lt;/code&gt; or &lt;code&gt;Func&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These solutions worked most of the time. But they required a significant amount of work! Especially if you want to support retries for both sync and async actions. Still, nearly every bigger project contains some functionality like this.&lt;/p&gt;
+&lt;h2 id=&#34;party-parrot-to-the-rescue&#34;&gt;Party Parrot to the rescue!
+&lt;/h2&gt;&lt;p&gt;There is already an elegant solution to this problem out there! You can use the library &lt;a class=&#34;link&#34; href=&#34;https://github.com/App-vNext/Polly&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Polly&lt;/a&gt; to de-clutter your code. The icon of this library is a colorful parrot. That’s why I can’t resist making bad &lt;a class=&#34;link&#34; href=&#34;https://cultofthepartyparrot.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Party Parrot&lt;/a&gt; jokes about it — Party or Die!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t reinvent the wheel!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here is what the upper code looks like when Polly comes into place:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RetryPolicy policy = Policy
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  .Handle&amp;lt;Exception&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  .Retry(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;policy.Execute(DoSomethingThatCanThrowAnException);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Far less code. In this example, just five lines of code. And it is still clear and precise. That’s a great benefit we have already achieved!&lt;/p&gt;
+&lt;p&gt;It gets better. You remember how I said that hardware behaves strangely from time to time? I once met a sensor that returned &lt;code&gt;double.NaN&lt;/code&gt; sometimes. If it did, you just had to let it rest for some seconds and schedule a retry.&lt;/p&gt;
+&lt;p&gt;Polly can do that, as well. Here is how I would additionally handle the invalid result and introduce a waiting time between every retry:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RetryPolicy&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; policy = Policy&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .Handle&amp;lt;Exception&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .OrResult(Double.NaN)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                              .WaitAndRetry(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, (_, _) =&amp;gt; TimeSpan.FromSeconds(&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;policy.Execute(DoSomethingThatCanThrowAnException);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;the-advantages&#34;&gt;The Advantages
+&lt;/h2&gt;&lt;p&gt;Let’s focus on the advantages of using Polly for retries:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Great API: Short, precise, and easy to read.&lt;/li&gt;
+&lt;li&gt;Polly is widely used and tested. Don’t reinvent a buggy solution.&lt;/li&gt;
+&lt;li&gt;You can reuse common policies by sharing them between classes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I want to emphasize the API once more. Consider the following method: &lt;code&gt;public double DoSomethingCool(CancellationToken token).&lt;/code&gt; I love that it takes a &lt;code&gt;CancellationToken&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Why? Because any user of this method, every client, knows that it supports cancellation! And even better: Every user of this method can decide how they want to handle cancellation. They can cancel with a timeout, cancel when the user clicks some abort button, or cancel however they want.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A great API forces the user to use it correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We can use the same idea for our retry logic with Polly. Look at the following updated method prototype: &lt;code&gt;public double DoSomethingCool(ISyncPolicy policy, CancellationToken token)&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;I love it! This method seems to support cancellation and execution policies — I know that just by looking at the prototype.&lt;/p&gt;
+&lt;p&gt;I can call it in any way I choose! Maybe with five retries on exceptions? Maybe with three retries on &lt;code&gt;double.NaN&lt;/code&gt; with a timeout of two seconds max? It’s up to your clients — your method supports it no matter what they decide. Thanks to Polly and the great API design!&lt;/p&gt;
+&lt;p&gt;Definitely check out the &lt;a class=&#34;link&#34; href=&#34;https://github.com/App-vNext/Polly&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;readme&lt;/a&gt; of Polly because it can do so much more:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rate-limiting&lt;/li&gt;
+&lt;li&gt;timeouts&lt;/li&gt;
+&lt;li&gt;caching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Imperative vs. Declarative Models. Explained with Beer</title>
+        <link>http://localhost:1313/post/imperative-vs-declarative/</link>
+        <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/imperative-vs-declarative/</guid>
+        <description>&lt;img src="http://localhost:1313/post/imperative-vs-declarative/cover.jpg" alt="Featured image of post Imperative vs. Declarative Models. Explained with Beer" /&gt;&lt;p&gt;Do you know the difference between an imperative modelling approach and a declarative one? If not, here is a brief explanation with beer.&lt;/p&gt;
+&lt;p&gt;When hosting a party in our garage, I need to make sure the fridge is filled with beer. Of course we also organize soft drinks and water, since legend has it that there are people who don&amp;rsquo;t like beer.&lt;/p&gt;
+&lt;h2 id=&#34;the-imperative-model&#34;&gt;The Imperative Model
+&lt;/h2&gt;&lt;p&gt;Let&amp;rsquo;s say I have space for around 30 bottles in my fridge. I put 15 bottles of beer, 10 bottles of soft drinks and 5 bottles of water in it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Perfect! Work done, the party can start!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But 10 minutes into the party, the work continues. The fridge is getting empty and I have to replenish the supply. My desired state of 15/10/5 bottles has already dropped to roughly 6/5/4.&lt;/p&gt;
+&lt;p&gt;I need to move more bottles from the beer, soft drink, and water cases to the fridge to keep them cold.&lt;/p&gt;
+&lt;p&gt;Phew… that is quite tedious. The work never stops since it&amp;rsquo;s my job to maintain the desired state of 15/10/5 bottles all night long.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s why I instructed everyone to refill the fridge from time to time when they see a shortage, by sticking a note on the fridge.&lt;/p&gt;
+&lt;p&gt;But chaos soon ensues. We now have very strange fridge-bottle-ratios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Either there are too many bottles in the fridge, causing them to roll out and spill all over the floor,&lt;/li&gt;
+&lt;li&gt;Or the fridge is full but doesn&amp;rsquo;t contain a single bottle of beer.&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This pretty much sums up how an imperative model works:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is the job of moving bottles from the case to the fridge&lt;/li&gt;
+&lt;li&gt;This has to be done once before the party&lt;/li&gt;
+&lt;li&gt;The bottle count has to be checked regularly&lt;/li&gt;
+&lt;li&gt;The job of restocking the fridge needs to be done repeatedly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The imperative model focuses on the actions that need to be done in order to set the system up and keep it running.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-declarative-model&#34;&gt;The Declarative Model
+&lt;/h2&gt;&lt;p&gt;I learned from my mistakes! I don&amp;rsquo;t want to go to bed at 9pm because I&amp;rsquo;m exhausted from all the work. So, we hired a bartender.&lt;/p&gt;
+&lt;p&gt;We told the bartender our desired state of 15/10/5 bottles, and he handles the rest for us.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;He sets up the fridge initially,&lt;/li&gt;
+&lt;li&gt;He checks the ratio regularly,&lt;/li&gt;
+&lt;li&gt;He refills the fridge as needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In essence, he performs all the jobs I had to do. I can enjoy the party without worry.&lt;/p&gt;
+&lt;p&gt;So from my perspective, the following happened:&lt;/p&gt;
+&lt;p&gt;Instead of focusing on the actions that need to be done, I simply defined the desired end-state and delegated the responsibility of achieving that state to the bartender. I don&amp;rsquo;t even care &lt;strong&gt;how&lt;/strong&gt; he does his job, as long as he guarantees that the fridge is always filled as I requested.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The declarative model focuses on the desired state while delegating the responsibility of the necessary actions to achieve that state.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;why-beer&#34;&gt;Why beer?
+&lt;/h2&gt;&lt;p&gt;There might be better examples like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting the room temperature on a thermostat vs. switching a heater on and off all the time depending on the current temperature&lt;/li&gt;
+&lt;li&gt;Asking a cook to provide a buffet for 20 people vs. giving the cook atomic instructions on what to buy, how to cut the ingredients, how to season, …&lt;/li&gt;
+&lt;li&gt;Kubernetes: Scaling pods on load changes&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But I like beer. So I chose this example. Deal with it.&lt;/p&gt;
+&lt;p&gt;I learned these concepts while reading &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3LyFNOS&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Kubernetes Book by Nigel Poulton&lt;/a&gt;. It&amp;rsquo;s really well written, and I recommend it to anyone who needs a deep dive into Kubernetes.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Beyond the Dogma: An unpopular opinion on Clean Code</title>
+        <link>http://localhost:1313/post/beyond-the-dogma-an-unpopular-opinion-on-clean-code/</link>
+        <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/beyond-the-dogma-an-unpopular-opinion-on-clean-code/</guid>
+        <description>&lt;img src="http://localhost:1313/post/beyond-the-dogma-an-unpopular-opinion-on-clean-code/cover.jpg" alt="Featured image of post Beyond the Dogma: An unpopular opinion on Clean Code" /&gt;&lt;h2 id=&#34;an-uplifting-read&#34;&gt;An uplifting read
+&lt;/h2&gt;&lt;p&gt;Part of being a good developer is reading books and pursuing lifelong learning. One of the books that greatly influenced me as a young professional was &lt;a class=&#34;link&#34; href=&#34;https://amzn.to/3XZ8j3J&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;“Clean Code” by Robert C. Martin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The best part? It’s an uplifting read. Even with limited software knowledge, you can easily grasp Martin’s concepts. I remember sitting on the train, reading with a smile on my face, and nodding in agreement throughout.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Martin is spot on! “Clean Code” is the real deal!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-hardliner&#34;&gt;The Hardliner
+&lt;/h2&gt;&lt;p&gt;That’s when my “Clean Code” phase began. I treated all of Martin’s principles as established facts; a guidebook that all good developers must adhere to. I became rather dogmatic, sometimes blindly applying Martin’s suggestions.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DRY&lt;/code&gt; (Don’t Repeat Yourself) — one of the key tenets of Clean Code. I internalized Martin’s ideas and shared them with my colleagues like a prophet. If I noticed something duplicated three times, I’d get nervous and immediately address it through extraction.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Extract ’til you drop!” — Martin’s mantra.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;coming-of-age&#34;&gt;Coming of Age
+&lt;/h2&gt;&lt;p&gt;Becoming a Senior Developer required me to question Martin’s principles. Don’t get me wrong, Martin is still correct and “Clean Code” remains essential. However, blindly adopting all his rules is a mistake. Ponder them; some rules even contradict each other. &lt;code&gt;DRY&lt;/code&gt; can lead to complex architectures that breach the &lt;code&gt;KISS&lt;/code&gt; (Keep It Simple, Stupid!) principle. It can also lead to disregarding &lt;code&gt;YAGNI&lt;/code&gt; (You Ain’t Gonna Need It).&lt;/p&gt;
+&lt;p&gt;I’ve come to realize that 6 lines of duplicated code are often cleaner than, for instance, implementing an observer pattern. With those 6 lines, I can instantly understand the code, without having to navigate through multiple classes and interfaces. If those 6 lines turn into 7 lines in 5 years, so be it. It’s an acceptable growth.&lt;/p&gt;
+&lt;p&gt;If you find yourself with 12 lines of duplicated code growing every month, it’s a sign that refactoring should be scheduled.&lt;/p&gt;
+&lt;h2 id=&#34;some-advice&#34;&gt;Some Advice
+&lt;/h2&gt;&lt;p&gt;I believe every dedicated developer experiences a dogmatic Clean Code phase, so I won’t advise you to skip it. But keep it brief by critically evaluating Martin’s rules and adopting them only when they truly fit!&lt;/p&gt;
+&lt;p&gt;Another rule I always remember:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The developer who has to debug your code is a serial killer who knows where you live!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Will you offer them 6 lines of code adding items to a list, or will you guide him through the Visitor Pattern to gather those 6 items?&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>How and Where to handle Exceptions while Maintaining a Great API</title>
+        <link>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</link>
+        <pubDate>Mon, 08 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/</guid>
+        <description>&lt;img src="http://localhost:1313/post/how-and-where-to-handle-exceptions-while-maintaining-a-great-api/cover.jpg" alt="Featured image of post How and Where to handle Exceptions while Maintaining a Great API" /&gt;&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
+&lt;p&gt;The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.&lt;/p&gt;
+&lt;p&gt;An exception-less approach via the Result Pattern is a step in that direction.&lt;/p&gt;
+&lt;p&gt;In this article, I will guide you through a typical software problem I faced multiple times working in the production industry. I will provide some simple examples, share my thoughts, and explain why I prefer the exception-less approach in this use case.&lt;/p&gt;
+&lt;h2 id=&#34;the-manufacturers-dll&#34;&gt;The Manufacturer’s DLL
+&lt;/h2&gt;&lt;p&gt;I often have to deal with actual hardware at my job.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Opening/Closing valves&lt;/li&gt;
+&lt;li&gt;Switching relais&lt;/li&gt;
+&lt;li&gt;Retrieving values from temperature sensors&lt;/li&gt;
+&lt;li&gt;Moving actuators&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All these expensive hardwares gets shipped with a piece of software in form of a DLL from the manufacturer.&lt;/p&gt;
+&lt;p&gt;Let’s say we want to measure the ambient pressure and bought some expensive pressure sensor. The manufacturer provided us with a driver that has the following features:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IPressureSensorDriver&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As for most manufacturer DLLs the API is not very convenient. To actually poll the current ambient pressure we have to&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Call &lt;code&gt;Init()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;StartMeasurement()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;StopMeasurement()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;GetPressure()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;dont-repeat-yourself&#34;&gt;Don’t repeat yourself!
+&lt;/h2&gt;&lt;p&gt;Since we don’t want calls repeated all over our solution we will introduce a new class that wraps the manufacturer&amp;rsquo;s driver and acts as a convenient service for us.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pressure;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let’s test our service by polling the pressure multiple times in a row:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Program&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; Task Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; driver = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureSensorDriver();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; pressureService = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureService(driver);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;; i++)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = pressureService.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Pressure: {pressure}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; Task.Delay(&lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Console.ReadKey();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And of course: As soon as we run the application we’ll get an unhandled exception:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Exception Unhandled — System.Exception: ‘Connection to Sensor interrupted.’&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;what-did-we-do-wrong&#34;&gt;What did we do wrong?
+&lt;/h2&gt;&lt;p&gt;We just called a method from another application layer without any exception handling.&lt;/p&gt;
+&lt;p&gt;The driver class is a third-party code we do not know. Nevertheless we crossed that border without any safety net. We just assumed that the method will work as expected.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Always handle exceptions on application borders!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware calls no matter the communication protocol&lt;/li&gt;
+&lt;li&gt;Web Requests or anything that depends on the internet&lt;/li&gt;
+&lt;li&gt;External code, either unknown, undocumented or untested&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-classic-solution&#34;&gt;The Classic Solution
+&lt;/h2&gt;&lt;p&gt;Since we already found the problem, let’s implement the classic solution for it: a try-catch right in our service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pressure;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;.NaN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That, of course, will work. All exceptions will be swallowed by our &lt;code&gt;catch&lt;/code&gt;. If something goes wrong, we simply return a &lt;code&gt;double.NaN&lt;/code&gt; . We are now exception-less!&lt;/p&gt;
+&lt;p&gt;But there are some flaws. Let’s look at the API of our service from a user’s view. And with API I simply mean our method &lt;code&gt;GetPressure()&lt;/code&gt;; its name, its return type and its input arguments. Because that is all the user sees.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The user has no way to know whether the method throws an exception or not. He has no way to decide whether he has to put that method call in a &lt;code&gt;try/catch&lt;/code&gt; without looking into it. That sucks.&lt;/li&gt;
+&lt;li&gt;The user has no way to know whether the method was a success or not. Even when the method ran without an exception, he has to check whether he got a valid number or &lt;code&gt;double.NaN&lt;/code&gt;. That sucks, as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-try-pattern&#34;&gt;The Try Pattern
+&lt;/h2&gt;&lt;p&gt;Let’s tweak our service a little further to see if we can get rid of these flaws:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; TryGetPressure(&lt;span style=&#34;color:#66d9ef&#34;&gt;out&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt; pressure)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = Double.NaN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our method now returns the pressure via an out variable. The return value of the method now is a &lt;code&gt;bool&lt;/code&gt; indicating success or failure of the method. We also tweaked the name of our method from &lt;code&gt;GetPressure&lt;/code&gt; to &lt;code&gt;TryGetPressure&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We just implemented the Try Pattern.&lt;/p&gt;
+&lt;h2 id=&#34;what-have-we-won-that-way&#34;&gt;What have we won that way?
+&lt;/h2&gt;&lt;p&gt;Method names starting with &lt;code&gt;Try&lt;/code&gt; are exception-less! That is the most important part of the Try Pattern.&lt;/p&gt;
+&lt;p&gt;Just by reading the method’s name the user of our service already knows that he does not need to handle any exceptions when calling it. This sounds so trivial but is a big part of API design:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you let the user know what to expect, he will do it the correct way.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The other flaw was eliminated, as well: The user can simply check the returned &lt;code&gt;bool&lt;/code&gt; flag to see if the method call was a success or not. He does not need to look at the pressure value at all, when the method already returned &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But in my opinion there are some new flaws:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I don’t like the syntax of out variables. A lot of Clean Code Prophets would sign that immediately. It’s just confusing — everyone expects the outputs of the method left to its name and suddenly there is in output right between the inputs? Just because we can, does not mean we should. Don’t obfuscate your code with all the syntax sugar your language provides. Keep it Simple!&lt;/li&gt;
+&lt;li&gt;We only have a single, binary result. But most of the time we want to provide the user of our method with more information. Consider all the reasons our method could fail: The service could not connect to the sensor? The service was connected to the sensor but the connection was lost? The sensor returned a value but it is not plausible? There might be different ways the user wants to handle each of these situations. In some he might schedule a retry, in others he might simply show a descriptive error message.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-result-pattern&#34;&gt;The Result Pattern
+&lt;/h2&gt;&lt;p&gt;To even solve these flaws, let’s tweak our service even a little further:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PressureService&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;readonly&lt;/span&gt; IPressureSensorDriver _driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; PressureService(IPressureSensorDriver driver)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        _driver = driver;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; Result&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; GetPressure()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.Init();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StartMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            _driver.StopMeasurement();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            pressure = _driver.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(pressure &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Fail(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Pressure is not plausible.&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Ok(pressure);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Result.Fail(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Could not retrieve Pressure from Sensor.&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this version we don’t return a &lt;code&gt;bool&lt;/code&gt; but a full &lt;code&gt;object&lt;/code&gt; of type &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Before digging deeper into the type &lt;code&gt;Result&lt;/code&gt;, have a look at the new usage of our service:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; Task Main(&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;[] args)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; driver = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureSensorDriver();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; pressureService = &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; PressureService(driver);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Result&amp;lt;&lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;&amp;gt; pressure = pressureService.GetPressure();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (pressure.IsFailed)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        HandleErrorWhileRetrievingPressure(pressure.Errors);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Console.WriteLine(&lt;span style=&#34;color:#e6db74&#34;&gt;$&amp;#34;Pressure: {pressure}&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Console.ReadKey();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you review the API and its usage you will notice:&lt;/p&gt;
+&lt;p&gt;You do not retrieve a &lt;code&gt;double&lt;/code&gt; but a &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt;. You are forced to think about what you will do if the operation failed. Just by using &lt;code&gt;Result&amp;lt;double&amp;gt;&lt;/code&gt; you know that there could be problems. You wouldn’t have noticed that if I just threw an exception inside the method, would you? And that is the big benefit of the Result Pattern.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A good API forces the user to use it correctly! It makes it nearly impossible to forget about error handling.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;the-result-object&#34;&gt;The Result Object
+&lt;/h2&gt;&lt;p&gt;The result object simply contains the actual value you are interested in plus any additional information you need — error reasons, success reasons, helper methods like &lt;code&gt;IsFailed&lt;/code&gt; — be creative!&lt;/p&gt;
+&lt;p&gt;This pattern is not new; it’s a classic. There are many libraries for the Result Pattern available, so you don’t even have to implement your own &lt;code&gt;Result&lt;/code&gt; class!&lt;/p&gt;
+&lt;p&gt;My .NET example used the great project &lt;a class=&#34;link&#34; href=&#34;https://github.com/altmann/FluentResults&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;FluentResults&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;Just to digest, I will repeat my introduction:&lt;/p&gt;
+&lt;p&gt;Exception handling is not easy. It can be done in the wrong places, it can be done the wrong way, and it can even be forgotten completely.&lt;/p&gt;
+&lt;p&gt;The best we can do to help our fellow developers with that problem is to design our API as bulletproof as possible.&lt;/p&gt;
+&lt;p&gt;An exception-less approach via the Result Pattern is a step in that direction.&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>http://localhost:1313/page/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/page/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

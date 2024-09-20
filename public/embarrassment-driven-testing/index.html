@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="There are lots of links in my head when thinking about testing in software:\na good test suite indicates good software quality a good test suite is a safety net for developers a good test suite saves time in the long run … A talk from Daniel Raniz Raneland just added another surprising perspective:\nA good test suite prevents you from embarrassment.\nI think this provides us with valuable insights on the minimun requirements of what to test:\n">
+<title>Embarrassment-Driven-Testing</title>
+
+<link rel='canonical' href='http://localhost:1313/embarrassment-driven-testing/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Embarrassment-Driven-Testing">
+<meta property='og:description' content="There are lots of links in my head when thinking about testing in software:\na good test suite indicates good software quality a good test suite is a safety net for developers a good test suite saves time in the long run … A talk from Daniel Raniz Raneland just added another surprising perspective:\nA good test suite prevents you from embarrassment.\nI think this provides us with valuable insights on the minimun requirements of what to test:\n">
+<meta property='og:url' content='http://localhost:1313/embarrassment-driven-testing/'>
+<meta property='og:site_name' content='My New Hugo Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='' /><meta property='article:tag' content='testing' /><meta property='article:tag' content='clean code' /><meta property='article:published_time' content='2024-07-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-07-29T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Embarrassment-Driven-Testing">
+<meta name="twitter:description" content="There are lots of links in my head when thinking about testing in software:\na good test suite indicates good software quality a good test suite is a safety net for developers a good test suite saves time in the long run … A talk from Daniel Raniz Raneland just added another surprising perspective:\nA good test suite prevents you from embarrassment.\nI think this provides us with valuable insights on the minimun requirements of what to test:\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu13739649187745961479.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">My New Hugo Site</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/software-craftmanship/" >
+                Software Craftmanship
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/embarrassment-driven-testing/">Embarrassment-Driven-Testing</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 29, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>There are lots of links in my head when thinking about testing in software:</p>
+<ul>
+<li>a good test suite indicates good software quality</li>
+<li>a good test suite is a safety net for developers</li>
+<li>a good test suite saves time in the long run</li>
+<li>…</li>
+</ul>
+<p>A talk from <a class="link" href="https://www.linkedin.com/in/raneland/"  target="_blank" rel="noopener"
+    >Daniel Raniz Raneland</a> just added another surprising perspective:</p>
+<blockquote>
+<p>A good test suite prevents you from embarrassment.</p>
+</blockquote>
+<p>I think this provides us with valuable insights on the minimun requirements of what to test:</p>
+<blockquote>
+<p>It&rsquo;s the <em>one thing</em> your team/software is responsible for. The <em>one thing</em> that would be totally embarrassing if it didn&rsquo;t function correctly.</p>
+</blockquote>
+<ul>
+<li>if you develop the software for a snack vending machine, make sure that the doors open correctly.</li>
+<li>if you develop a to-do web app, make sure that to-dos can be ticked</li>
+<li>if you develop a mobile camera app, make sure you can actually take a picture</li>
+<li>…</li>
+</ul>
+<p>If the Excel export of your to-do list generates an incorrect file name, users might tolerate it for a while. But if they can&rsquo;t tick their to-dos, they will definitely unsubscribe from your service.</p>
+<p>Ticking to-dos is your <em>one thing</em>. Make sure to have that covered completely by the test suite. If starting from scratch, this should be one of the first E2E-tests.</p>
+<h2 id="return-of-investments-of-tests">Return of Investments of tests
+</h2><p>I like this idea of embarrassment-driven-testing because it relates so well to another new link I noted from a talk by <a class="link" href="https://www.linkedin.com/in/yohstern/"  target="_blank" rel="noopener"
+    >Johannes Stern</a>.</p>
+<blockquote>
+<p>Every single test needs a return of investment (ROI).</p>
+</blockquote>
+<p>You would not invest your valuable money in a project that does not earn you money in the long run, would you? The same is correct for software tests.</p>
+<p>We write unit tests because they are cheap and give us a fast response to our changes. This is an instant ROI!</p>
+<p>Integration-, API-, and E2E-tests are more expensive. Depending on the quality of the existing code they can be very expensive. But no matter the price, testing your <em>one thing</em> is a necessary investment, not just to prevent embarrassment, but to save your business.</p>
+<p>This same thought can also be true from the opposite perspective: Tests can be a bad investment. If your feature is covered by a great E2E-test, do you really need an API-test <em>and</em> integration-test <em>and</em> unit-tests? Or are they just redundant?</p>
+<p>Don&rsquo;t get me wrong, I am an advocate for testing and support every test that is written. But testing is about quality and not quantity. Having the ROI in mind, maybe it&rsquo;s time to delete those flaky tests that you spend so much time on debugging every week, while not giving you any confidence when they are finally green.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/testing/">Testing</a>
+        
+            <a href="/tags/clean-code/">Clean Code</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/beyond-the-dogma-an-unpopular-opinion-on-clean-code/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Beyond the Dogma: An unpopular opinion on Clean Code</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 My New Hugo Site
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
