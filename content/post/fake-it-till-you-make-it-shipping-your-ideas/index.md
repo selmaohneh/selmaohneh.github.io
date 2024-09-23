@@ -19,7 +19,7 @@ tags:
   - "azure"
 ---
 ## Procrastination
-I recently decided to start a new side-project. It’s an app for android. I often have ideas for great apps — but I only ever shipped a few. Why is that?
+I recently decided to start a new side-project. It’s an app for android. I often have ideas for handy little apps — but I only ever shipped a few. Why is that?
 
 Right after an idea emerges, I immediately start to think about architecture and technical details.
 
