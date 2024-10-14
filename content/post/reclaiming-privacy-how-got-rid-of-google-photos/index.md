@@ -27,7 +27,7 @@ My wife and I have consistently stored all photos taken on our phones directly w
 The decisive factor in finally getting rid of this Google service, is mainly the current AI hype: Google uses all the photos to train their AI models. 
 
 > In plain language, this means: 
-> All photos of my wife, all photos of my children and all photos of me are the training basis of a future AI model. 
+> All photos of my wife, all photos of my children and all photos of me might be the training basis of a future AI model.
 > 
 > And this also means that this AI can then generate photos of my wife, my children and me at will. And the more I think about it, the creepier I find this idea.  
 
